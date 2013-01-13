@@ -1,3 +1,13 @@
+### To do this:
+
+
+![](https://raw.github.com/koush/Widgets/master/dark.png)
+![](https://raw.github.com/koush/Widgets/master/light.png)
+
+
+### Write this:
+
+
 ```java
 
 public class MainActivity extends ActivityBase {
