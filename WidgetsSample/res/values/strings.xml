@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WidgetsSample</string>
+
+    <string name="cloud">Cloud</string>
+    <string name="googledrive">Google Drive</string>
+    <string name="googledrive_summary">By the power of Google!</string>
+    <string name="dropbox">Dropbox</string>
+    <string name="box">Box</string>
+    
+    <string name="devices">Devices</string>
+</resources>

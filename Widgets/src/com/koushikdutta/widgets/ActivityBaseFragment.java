@@ -140,7 +140,22 @@ public class ActivityBaseFragment extends Fragment {
         return null;
     }
     
+    private ActivityBaseFragmentListener mListener;
+    public ActivityBaseFragmentListener getListener() {
+        return mListener;
+    }
+    
+    public void setListener(ActivityBaseFragmentListener listener) {
+        mListener = listener;
+    }
+    
+    public static interface ActivityBaseFragmentListener {
+        void onCreate(Bundle savedInstanceState, View view);
+    }
+    
     protected void onCreate(Bundle savedInstanceState, View view) {
+        if (mListener != null)
+            mListener.onCreate(savedInstanceState, view);
     }
     
     TextView mEmpty;

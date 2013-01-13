@@ -16,41 +16,44 @@ public class ListItem {
 
     public int Icon;
     
-    public void setEnabled(boolean enabled) {
+    public ListItem setEnabled(boolean enabled) {
         Enabled = enabled;
         Context.mAdapter.notifyDataSetChanged();
+        return this;
     }
     
     public boolean getEnabled() {
         return Enabled;
     }
     
-    public void setTitle(int title) {
+    public ListItem setTitle(int title) {
         if (title == 0)
-            setTitle(null);
+            return setTitle(null);
         else
-            setTitle(Context.getString(title));
+            return setTitle(Context.getString(title));
     }
     
     public String getTitle() {
         return Title;
     }
     
-    public void setTitle(String title) {
+    public ListItem setTitle(String title) {
         Title = title;
         Context.mAdapter.notifyDataSetChanged();
+        return this;
     }
 
-    public void setSummary(int summary) {
+    public ListItem setSummary(int summary) {
         if (summary == 0)
-            setSummary(null);
+            return setSummary(null);
         else
-            setSummary(Context.getString(summary));
+            return setSummary(Context.getString(summary));
     }
     
-    public void setSummary(String summary) {
+    public ListItem setSummary(String summary) {
         Summary = summary;
         Context.mAdapter.notifyDataSetChanged();
+        return this;
     }
     
     public ListItem(ActivityBaseFragment context, int title, int summary) {
@@ -80,9 +83,10 @@ public class ListItem {
     private boolean CheckboxVisible = false;
     private boolean checked = false;
     
-    public void setCheckboxVisible(boolean visible) {
+    public ListItem setCheckboxVisible(boolean visible) {
         CheckboxVisible = visible;
         Context.mAdapter.notifyDataSetChanged();
+        return this;
     }
 
     public boolean getCheckboxVisible() {
@@ -93,10 +97,11 @@ public class ListItem {
         return checked;
     }
     
-    public void setChecked(boolean isChecked) {
+    public ListItem setChecked(boolean isChecked) {
         checked = isChecked;
         CheckboxVisible = true;
         Context.mAdapter.notifyDataSetChanged();
+        return this;
     }
 //    
 //    boolean mUseOnOff = false;
