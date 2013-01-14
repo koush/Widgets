@@ -63,4 +63,15 @@ public class ActivityBase extends FragmentActivity implements ActivityBaseFragme
     public void setEmpty(int res) {
         getFragment().setEmpty(res);
     }
+
+    public boolean isDestroyed() {
+        return mDestroyed;
+    }
+    
+    private boolean mDestroyed = false;
+    @Override
+    protected void onDestroy() {
+        mDestroyed = true;
+        super.onDestroy();
+    }
 }

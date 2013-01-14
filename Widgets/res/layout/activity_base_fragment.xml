@@ -19,6 +19,7 @@
         android:paddingRight="10dp" />
 
     <TextView
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/empty"
         android:layout_width="fill_parent"
@@ -27,6 +28,7 @@
         android:gravity="center"
         android:layout_weight="1"
         android:orientation="vertical"
+        android:padding="10dp"
         android:visibility="gone" />
 
     <LinearLayout

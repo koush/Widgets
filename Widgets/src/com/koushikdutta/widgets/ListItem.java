@@ -14,7 +14,13 @@ public class ListItem {
     private ActivityBaseFragment Context;
     private boolean Enabled = true;
 
-    public int Icon;
+    private int Icon;
+    
+    public ListItem setIcon(int icon) {
+        Icon = icon;
+        Context.mAdapter.notifyDataSetChanged();
+        return this;
+    }
     
     public ListItem setEnabled(boolean enabled) {
         Enabled = enabled;
