@@ -202,7 +202,6 @@ public class ActivityBaseFragment extends Fragment {
         mAdapter = new MyAdapter(getActivity());
     }
 
-    
     Handler handler = new Handler();
     
     @Override
@@ -219,6 +218,18 @@ public class ActivityBaseFragment extends Fragment {
     protected void clear() {
         mAdapter.clear();
         mAdapters.clear();
+    }
+    
+    protected void clearSection(int section) {
+        clearSection(getActivity().getString(section));
+    }
+    
+    protected void clearSection(String section) {
+        MyListAdapter adapter = mAdapters.get(section);
+        if (adapter == null)
+            return;
+        adapter.clear();
+        mAdapter.notifyDataSetChanged();
     }
     
     public void removeItem(ListItem item) {
