@@ -1,6 +1,6 @@
 package com.koushikdutta.widgets;
 
-import java.util.HashMap;
+import java.util.Comparator;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -18,12 +17,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class ActivityBaseFragment extends Fragment {
-    protected boolean mDestroyed = false;
+    boolean mDestroyed = false;
     
-    protected ListView mListView;
-    protected MyAdapter mAdapter;
+    ListView mListView;
+    MyAdapter mAdapter;
     
-    protected class MyAdapter extends SeparatedListAdapter {
+    static class MyAdapter extends SeparatedListAdapter<ListItemAdapter> {
         public MyAdapter(Context context) {
             super(context);
         }
@@ -42,8 +41,8 @@ public class ActivityBaseFragment extends Fragment {
         }
     }
     
-    public class MyListAdapter extends ArrayAdapter<ListItem> {
-        public MyListAdapter(Context context) {
+    public static class ListItemAdapter extends ArrayAdapter<ListItem> {
+        public ListItemAdapter(Context context) {
             super(context, 0);
         }
         
@@ -63,32 +62,93 @@ public class ActivityBaseFragment extends Fragment {
             ListItem item = getItem(position);
             return item.getEnabled();
         }
+        
+        boolean sorting;
+        @Override
+        public void notifyDataSetChanged() {
+            if (sorter != null && !sorting) {
+                sorting = true;
+                super.sort(sorter);
+                sorting = false;
+            }
+            else {
+                super.notifyDataSetChanged();
+            }
+        }
+        
+        private Comparator<ListItem> sorter;
+        public void setSort(Comparator<ListItem> sorter) {
+            this.sorter = sorter;
+            notifyDataSetChanged();
+        }
+        
+        public Comparator<ListItem> getSort() {
+            return sorter;
+        }
+        
+        public Comparator<ListItem> ALPHA = new Comparator<ListItem>() {
+            @Override
+            public int compare(ListItem lhs, ListItem rhs) {
+                return lhs.getTitle().compareTo(rhs.getTitle());
+            }
+        };
+        
+        public Comparator<ListItem> ALPHAIGNORECASE = new Comparator<ListItem>() {
+            @Override
+            public int compare(ListItem lhs, ListItem rhs) {
+                return lhs.getTitle().compareToIgnoreCase(rhs.getTitle());
+            }
+        };
+
+        public Comparator<ListItem> NONE = new Comparator<ListItem>() {
+            @Override
+            public int compare(ListItem lhs, ListItem rhs) {
+                return ((Integer)getPosition(lhs)).compareTo(getPosition(rhs));
+            }
+        };
     }
     
-    HashMap<String, MyListAdapter> mAdapters = new HashMap<String, ActivityBaseFragment.MyListAdapter>();
+//    HashMap<String, MyListAdapter> mAdapters = new HashMap<String, ActivityBaseFragment.MyListAdapter>();
     
-    protected MyListAdapter ensureHeader(int sectionName) {
-        String sn = getString(sectionName);
-        MyListAdapter adapter = mAdapters.get(sn);
+    public ListItemAdapter ensureHeader(int sectionName) {
+        return ensureHeader(mAdapter.getSectionCount(), getString(sectionName));
+    }
+    
+    public ListItemAdapter ensureHeader(String sectionName) {
+        return ensureHeader(mAdapter.getSectionCount(), sectionName);
+    }
+
+    public ListItemAdapter ensureHeader(int index, int sectionName) {
+        return ensureHeader(index, getString(sectionName));
+    }
+    public ListItemAdapter ensureHeader(int index, String sectionName) {
+        ListItemAdapter adapter = mAdapter.getSection(sectionName);
         if (adapter == null) {
-            adapter = new MyListAdapter(getActivity());
-            mAdapters.put(sn, adapter);
-            mAdapter.addSection(sn, adapter);
+            adapter = new ListItemAdapter(getActivity());
+            mAdapter.addSection(index, sectionName, adapter);
             mListView.setAdapter(null);
             mListView.setAdapter(mAdapter);
         }
         return adapter;
     }
+    
+    public ListItemAdapter getSection(int section) {
+        return getSection(getString(section));
+    }
+    
+    public ListItemAdapter getSection(String section) {
+        return mAdapter.getSection(section);
+    }
 
-    protected ListItem addItem(int sectionName, ListItem item) {
+    public ListItem addItem(int sectionName, ListItem item) {
         return addItem(getString(sectionName), item);
     }
 
-    protected ListItem addItem(int sectionName, ListItem item, int index) {
+    public ListItem addItem(int sectionName, ListItem item, int index) {
         return addItem(getString(sectionName), item, index);
     }
     
-    protected ListItem addItem(String sectionName, ListItem item) {
+    public ListItem addItem(String sectionName, ListItem item) {
         return addItem(sectionName, item, -1);
     }
     
@@ -97,17 +157,16 @@ public class ActivityBaseFragment extends Fragment {
     }
     
     public int getSectionItemCount(String section) {
-        MyListAdapter adapter = mAdapters.get(section);
+        ListItemAdapter adapter = mAdapter.getSection(section);
         if (adapter == null)
             return 0;
         return adapter.getCount();
     }
 
-    protected ListItem addItem(String sectionName, ListItem item, int index) {
-        MyListAdapter adapter = mAdapters.get(sectionName);
+    public ListItem addItem(String sectionName, ListItem item, int index) {
+        ListItemAdapter adapter = mAdapter.getSection(sectionName);
         if (adapter == null) {
-            adapter = new MyListAdapter(getActivity());
-            mAdapters.put(sectionName, adapter);
+            adapter = new ListItemAdapter(getActivity());
             mAdapter.addSection(sectionName, adapter);
             if (mListView != null) {
                 mListView.setAdapter(null);
@@ -120,18 +179,18 @@ public class ActivityBaseFragment extends Fragment {
             adapter.insert(item, index);
         else
             adapter.add(item);
-        
+
+        mAdapter.notifyDataSetChanged();
         return item;
     }
     
-    protected ListItem findItem(int item) {
+    public ListItem findItem(int item) {
         String text = getString(item);
         
-        for (Adapter adapter: mAdapter.sections.values())
+        for (ListItemAdapter adapter: mAdapter.getSections())
         {
-            MyListAdapter m = (MyListAdapter)adapter;
-            for (int i = 0; i < m.getCount(); i++) {
-                ListItem li = m.getItem(i);
+            for (int i = 0; i < adapter.getCount(); i++) {
+                ListItem li = adapter.getItem(i);
                 if (text.equals(li.getTitle()))
                     return li;
             }
@@ -215,25 +274,32 @@ public class ActivityBaseFragment extends Fragment {
         return R.layout.list_item_small;
     }
 
-    protected void clear() {
+    public void clear() {
         mAdapter.clear();
-        mAdapters.clear();
     }
     
-    protected void clearSection(int section) {
-        clearSection(getActivity().getString(section));
+    public void clearSection(int section) {
+        clearSection(mListView.getContext().getString(section));
     }
     
-    protected void clearSection(String section) {
-        MyListAdapter adapter = mAdapters.get(section);
+    public void clearSection(String section) {
+        ListItemAdapter adapter = mAdapter.getSection(section);
         if (adapter == null)
             return;
         adapter.clear();
         mAdapter.notifyDataSetChanged();
     }
     
+    public void removeSection(int section) {
+        removeSection(mListView.getContext().getString(section));
+    }
+    
+    public void removeSection(String section) {
+        mAdapter.removeSection(section);
+    }
+    
     public void removeItem(ListItem item) {
-        for (MyListAdapter adapter: mAdapters.values()) {
+        for (ListItemAdapter adapter: mAdapter.getSections()) {
             adapter.remove(item);
         }
         mAdapter.notifyDataSetChanged();
