@@ -27,16 +27,19 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
     public void addSection(String section, T adapter) {
         this.headers.add(section);
         this.sections.put(section, adapter);
+        notifyDataSetChanged();
     }
 
     public void addSection(int index, String section, T adapter) {
         this.headers.insert(section, index);
         this.sections.put(section, adapter);
+        notifyDataSetChanged();
     }
     
     public void removeSection(String section) {
         this.headers.remove(section);
         this.sections.remove(section);
+        notifyDataSetChanged();
     }
     
     public T getSection(String section) {

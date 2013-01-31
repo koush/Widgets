@@ -37,11 +37,13 @@ public class ActivityBaseFragment extends Fragment {
             if (!super.isEnabled(position))
                 return false;
             ListItem item = (ListItem) getItem(position);
+            if (item == null)
+                return false;
             return item.getEnabled();
         }
     }
     
-    public static class ListItemAdapter extends ArrayAdapter<ListItem> {
+    public class ListItemAdapter extends ArrayAdapter<ListItem> {
         public ListItemAdapter(Context context) {
             super(context, 0);
         }
@@ -80,6 +82,7 @@ public class ActivityBaseFragment extends Fragment {
         public void setSort(Comparator<ListItem> sorter) {
             this.sorter = sorter;
             notifyDataSetChanged();
+            mAdapter.notifyDataSetChanged();
         }
         
         public Comparator<ListItem> getSort() {
