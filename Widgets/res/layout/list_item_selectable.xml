@@ -2,9 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/activatedBackgroundIndicator"
     android:minHeight="64dp"
     android:orientation="horizontal" >
+
+    <View
+        android:layout_width="10dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/activatedBackgroundIndicator" />
 
     <include layout="@layout/list_item_base" />
 

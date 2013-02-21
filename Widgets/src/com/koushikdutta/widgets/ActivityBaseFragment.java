@@ -3,6 +3,7 @@ package com.koushikdutta.widgets;
 import java.util.Comparator;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -22,9 +23,22 @@ public class ActivityBaseFragment extends Fragment {
     ListView mListView;
     MyAdapter mAdapter;
     
-    static class MyAdapter extends SeparatedListAdapter<ListItemAdapter> {
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        float hor = getResources().getDimension(R.dimen.activity_horizontal_margin);
+        float ver = getResources().getDimension(R.dimen.activity_vertical_margin);
+        mListView.setPadding((int)hor, (int)ver, (int)hor, (int)ver);
+    }
+    
+    public class MyAdapter extends SeparatedListAdapter<ListItemAdapter> {
         public MyAdapter(Context context) {
             super(context);
+        }
+        
+        @Override
+        protected int getListHeaderResource() {
+            return ActivityBaseFragment.this.getListHeaderResource();
         }
         
         @Override
@@ -220,10 +234,18 @@ public class ActivityBaseFragment extends Fragment {
             mListener.onCreate(savedInstanceState, view);
     }
     
+    protected int getListFragmentResource() {
+        return R.layout.list_fragment;
+    }
+    
+    void onListItemClick(ListItem li) {
+        
+    }
+    
     TextView mEmpty;
     @Override
-    public final View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View ret = inflater.inflate(R.layout.list_fragment, null);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View ret = inflater.inflate(getListFragmentResource(), null);
         
         mListView = (ListView)ret.findViewById(R.id.listview);
         mListView.setOnItemClickListener(new OnItemClickListener() {
@@ -232,6 +254,7 @@ public class ActivityBaseFragment extends Fragment {
                 Object item = mAdapter.getItem(arg2);
                 if (item instanceof ListItem) {
                     ListItem li = (ListItem)item;
+                    onListItemClick(li);
                     li.onClickInternal(arg1);
                 }
             }
@@ -273,7 +296,11 @@ public class ActivityBaseFragment extends Fragment {
         mDestroyed = true;
     }
     
-    public int getListItemResource() {
+    protected int getListHeaderResource() {
+        return R.layout.list_header;
+    }
+    
+    protected int getListItemResource() {
         return R.layout.list_item;
     }
 
@@ -315,5 +342,9 @@ public class ActivityBaseFragment extends Fragment {
     
     public ListView getListView() {
         return mListView;
+    }
+    
+    public MyAdapter getAdapter() {
+        return mAdapter;
     }
 }

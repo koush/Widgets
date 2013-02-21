@@ -15,13 +15,17 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
         headers.clear();
         notifyDataSetChanged();
     }
+    
+    protected int getListHeaderResource() {
+        return R.layout.list_header;
+    }
 
     private final HashMap<String, T> sections = new HashMap<String, T>();
     private final ArrayAdapter<String> headers;
     private final static int TYPE_SECTION_HEADER = 0;
 
     public SeparatedListAdapter(Context context) {
-        headers = new ArrayAdapter<String>(context, R.layout.list_header);
+        headers = new ArrayAdapter<String>(context, getListHeaderResource());
     }
 
     public void addSection(String section, T adapter) {

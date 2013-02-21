@@ -1,0 +1,10 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_header_title"
+    style="@android:style/TextAppearance.Medium"
+    android:layout_width="fill_parent"
+    android:gravity="center"
+    android:padding="10dp"
+    android:layout_height="wrap_content"
+    android:textColor="@android:color/white" 
+    android:background="@color/holo_blue_light"
+    />

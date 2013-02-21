@@ -1,6 +1,7 @@
 package com.koushikdutta.widgets;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -17,7 +18,15 @@ public class ListItem {
     private int Icon;
     
     public ListItem setIcon(int icon) {
+        mDrawable = null;
         Icon = icon;
+        Context.mAdapter.notifyDataSetChanged();
+        return this;
+    }
+    
+    public ListItem setDrawable(Drawable drawable) {
+        mDrawable = drawable;
+        Icon = 0;
         Context.mAdapter.notifyDataSetChanged();
         return this;
     }
@@ -84,6 +93,12 @@ public class ListItem {
     public ListItem(ActivityBaseFragment context, String title, String summary, int icon) {
         this(context, title, summary);
         Icon = icon;
+    }
+    
+    Drawable mDrawable;
+    public ListItem(ActivityBaseFragment context, String title, String summary, Drawable drawable) {
+        this(context, title, summary);
+        mDrawable = drawable;
     }
     
     private boolean CheckboxVisible = false;
@@ -168,6 +183,10 @@ public class ListItem {
             if (Icon != 0) {
                 iv.setVisibility(View.VISIBLE);
                 iv.setImageResource(Icon);
+            }
+            else if (mDrawable != null) {
+                iv.setVisibility(View.VISIBLE);
+                iv.setImageDrawable(mDrawable);
             }
             else {
                 iv.setVisibility(View.GONE);

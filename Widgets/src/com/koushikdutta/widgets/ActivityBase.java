@@ -32,9 +32,17 @@ public class ActivityBase extends FragmentActivity implements ActivityBaseFragme
         return android.R.id.content;
     }
     
+    protected int getContentView() {
+        return 0;
+    }
+    
     ActivityBaseFragment fragment;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        int cv = getContentView();
+        if (0 != cv)
+            setContentView(cv);
         
         try {
             fragment = (ActivityBaseFragment)clazz.getConstructors()[0].newInstance();
