@@ -28,6 +28,10 @@ public class ActivityBase extends FragmentActivity implements ActivityBaseFragme
         return fragment.getView();
     }
     
+    protected int getListContainerId() {
+        return android.R.id.content;
+    }
+    
     ActivityBaseFragment fragment;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +40,7 @@ public class ActivityBase extends FragmentActivity implements ActivityBaseFragme
             fragment = (ActivityBaseFragment)clazz.getConstructors()[0].newInstance();
             fragment.setArguments(getIntent().getExtras());
             fragment.setListener(this);
-            getSupportFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
+            getSupportFragmentManager().beginTransaction().add(getListContainerId(), fragment).commit();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +68,7 @@ public class ActivityBase extends FragmentActivity implements ActivityBaseFragme
         getFragment().setEmpty(res);
     }
 
-    public boolean isDestroyed() {
+    public boolean isDestroyedLegacy() {
         return mDestroyed;
     }
     

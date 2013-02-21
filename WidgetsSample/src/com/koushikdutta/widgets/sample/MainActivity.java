@@ -14,6 +14,13 @@ public class MainActivity extends ActivityBase {
     public void onCreate(Bundle savedInstanceState, View view) {
         super.onCreate(savedInstanceState, view);
         
+        addItem("Content", new ListItem(getFragment(), "List Content", null, R.drawable.ic_launcher) {
+            @Override
+            public void onClick(View view) {
+                super.onClick(view);
+                startActivity(new Intent(MainActivity.this, ListContentTest.class));
+            }
+        });        
         addItem("Theme", new ListItem(getFragment(), "Dark Theme", null, R.drawable.ic_launcher) {
             @Override
             public void onClick(View view) {

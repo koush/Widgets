@@ -16,20 +16,24 @@ public final class R {
         public static int holo_blue_light=0x7f030000;
     }
     public static final class id {
-        public static int checkbox=0x7f040008;
-        public static int empty=0x7f040002;
-        public static int footer_container=0x7f040003;
-        public static int image=0x7f040005;
-        public static int list_header_title=0x7f040004;
-        public static int listview=0x7f040001;
-        public static int summary=0x7f040007;
-        public static int title=0x7f040006;
-        public static int title_container=0x7f040000;
+        public static int checkbox=0x7f04000a;
+        public static int content=0x7f040001;
+        public static int empty=0x7f040004;
+        public static int footer_container=0x7f040005;
+        public static int image=0x7f040007;
+        public static int list=0x7f040000;
+        public static int list_header_title=0x7f040006;
+        public static int listview=0x7f040003;
+        public static int summary=0x7f040009;
+        public static int title=0x7f040008;
+        public static int title_container=0x7f040002;
     }
     public static final class layout {
-        public static int activity_base_fragment=0x7f020000;
-        public static int list_header=0x7f020001;
-        public static int list_item=0x7f020002;
-        public static int list_item_small=0x7f020003;
+        public static int list_content=0x7f020000;
+        public static int list_fragment=0x7f020001;
+        public static int list_header=0x7f020002;
+        public static int list_item=0x7f020003;
+        public static int list_item_base=0x7f020004;
+        public static int list_item_selectable=0x7f020005;
     }
 }

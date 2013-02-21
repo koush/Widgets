@@ -15,7 +15,7 @@
     </ImageView>
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
@@ -23,15 +23,15 @@
 
         <TextView
             android:id="@+id/title"
+            style="@android:style/TextAppearance.Medium"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            style="@android:style/TextAppearance.DeviceDefault.Medium" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/summary"
+            style="@android:style/TextAppearance.Small"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            style="@android:style/TextAppearance.DeviceDefault.Small" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <CheckBox

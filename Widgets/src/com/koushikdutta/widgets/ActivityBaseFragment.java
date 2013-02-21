@@ -223,7 +223,7 @@ public class ActivityBaseFragment extends Fragment {
     TextView mEmpty;
     @Override
     public final View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View ret = inflater.inflate(R.layout.activity_base_fragment, null);
+        View ret = inflater.inflate(R.layout.list_fragment, null);
         
         mListView = (ListView)ret.findViewById(R.id.listview);
         mListView.setOnItemClickListener(new OnItemClickListener() {
@@ -274,7 +274,7 @@ public class ActivityBaseFragment extends Fragment {
     }
     
     public int getListItemResource() {
-        return R.layout.list_item_small;
+        return R.layout.list_item;
     }
 
     public void clear() {
@@ -311,5 +311,9 @@ public class ActivityBaseFragment extends Fragment {
     public void setEmpty(int res) {
         mListView.setEmptyView(mEmpty);
         mEmpty.setText(res);
+    }
+    
+    public ListView getListView() {
+        return mListView;
     }
 }
