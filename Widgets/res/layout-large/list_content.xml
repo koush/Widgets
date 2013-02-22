@@ -1,58 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/list_content_background"
-    android:orientation="vertical" >
+    android:background="@color/list_content_background" >
 
-    <LinearLayout
-        android:id="@+id/title_container"
-        android:layout_width="fill_parent"
+    <ImageView
+        android:id="@+id/watermark"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" />
+        android:layout_gravity="bottom|left"
+        android:alpha=".2"
+        android:padding="16dp" />
 
     <LinearLayout
-        android:id="@+id/list_content_container"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin" >
-
-        <ListView
-            android:layout_marginTop="16dp"
-            android:id="@+id/listview"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.6180339887498948482"
-            android:background="@drawable/list_content_left" />
-
-        <TextView
-            android:id="@+id/empty"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:textAppearance="@android:style/TextAppearance.Medium"
-            android:visibility="gone" />
+        android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/content"
+            android:id="@+id/title_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <LinearLayout
+            android:id="@+id/list_content_container"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/list_content_right"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin" >
+
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1.6180339887498948482"
+                android:background="@drawable/list_content_left" />
+
+            <TextView
+                android:id="@+id/empty"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/list_content_right"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/footer_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/footer_container"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
-
-</LinearLayout>
+</FrameLayout>

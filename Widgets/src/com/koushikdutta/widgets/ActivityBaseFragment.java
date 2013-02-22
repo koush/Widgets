@@ -242,11 +242,14 @@ public class ActivityBaseFragment extends Fragment {
         
     }
     
+    ViewGroup mTitleContainer;
     TextView mEmpty;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View ret = inflater.inflate(getListFragmentResource(), null);
-        
+
+        mTitleContainer = (ViewGroup)ret.findViewById(R.id.title_container);
+
         mListView = (ListView)ret.findViewById(R.id.listview);
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -346,5 +349,9 @@ public class ActivityBaseFragment extends Fragment {
     
     public MyAdapter getAdapter() {
         return mAdapter;
+    }
+    
+    public ViewGroup getTitleContainer() {
+        return mTitleContainer;
     }
 }

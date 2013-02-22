@@ -35,17 +35,18 @@ public final class R {
         public static int list_content_right=0x7f020001;
     }
     public static final class id {
-        public static int checkbox=0x7f06000a;
-        public static int content=0x7f060000;
-        public static int empty=0x7f060004;
-        public static int footer_container=0x7f060005;
-        public static int image=0x7f060007;
-        public static int list_content_container=0x7f060002;
-        public static int list_header_title=0x7f060006;
-        public static int listview=0x7f060003;
-        public static int summary=0x7f060009;
-        public static int title=0x7f060008;
-        public static int title_container=0x7f060001;
+        public static int checkbox=0x7f06000b;
+        public static int content=0x7f060001;
+        public static int empty=0x7f060005;
+        public static int footer_container=0x7f060006;
+        public static int image=0x7f060008;
+        public static int list_content_container=0x7f060000;
+        public static int list_header_title=0x7f060007;
+        public static int listview=0x7f060004;
+        public static int summary=0x7f06000a;
+        public static int title=0x7f060009;
+        public static int title_container=0x7f060003;
+        public static int watermark=0x7f060002;
     }
     public static final class layout {
         public static int list_content=0x7f030000;

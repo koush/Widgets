@@ -40,17 +40,18 @@ public final class R {
         public static final int nexusone=0x7f020006;
     }
     public static final class id {
-        public static final int checkbox=0x7f08000a;
-        public static final int content=0x7f080000;
-        public static final int empty=0x7f080004;
-        public static final int footer_container=0x7f080005;
-        public static final int image=0x7f080007;
-        public static final int list_content_container=0x7f080002;
-        public static final int list_header_title=0x7f080006;
-        public static final int listview=0x7f080003;
-        public static final int summary=0x7f080009;
-        public static final int title=0x7f080008;
-        public static final int title_container=0x7f080001;
+        public static final int checkbox=0x7f08000b;
+        public static final int content=0x7f080001;
+        public static final int empty=0x7f080005;
+        public static final int footer_container=0x7f080006;
+        public static final int image=0x7f080008;
+        public static final int list_content_container=0x7f080000;
+        public static final int list_header_title=0x7f080007;
+        public static final int listview=0x7f080004;
+        public static final int summary=0x7f08000a;
+        public static final int title=0x7f080009;
+        public static final int title_container=0x7f080003;
+        public static final int watermark=0x7f080002;
     }
     public static final class layout {
         public static final int list_content=0x7f030000;

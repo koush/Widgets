@@ -4,15 +4,17 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.ViewSwitcher;
 
 public class ListContentFragment extends ActivityBaseFragment {
     ViewGroup mContent;
     ViewGroup mContainer;
-
+    
     @Override
     protected int getListHeaderResource() {
         return R.layout.list_content_header;
@@ -47,16 +49,35 @@ public class ListContentFragment extends ActivityBaseFragment {
         ft.add(R.id.content, mCurrentContent);
         if (last != null)
             ft.remove(last);
+        if (mContainer instanceof ViewSwitcher) {
+            ViewSwitcher switcher = (ViewSwitcher)mContainer;
+            if (mContent != switcher.getCurrentView())
+                switcher.showNext();
+        }
         ft.commit();
+    }
+
+    public boolean onBackPressed() {
+        if (mCurrentContent == null)
+            return false;
+        if (mContainer instanceof ViewSwitcher) {
+            ((ViewSwitcher)mContainer).showPrevious();
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            ft.remove(mCurrentContent);
+            ft.commit();
+            mCurrentContent = null;
+            return true;
+        }
+        return false;
     }
     
     @Override
     void onListItemClick(ListItem li) {
         super.onListItemClick(li);
-        if (mContentAdapter == null)
-            return;
-        
-        setContent(mContentAdapter.getFragment(li, mCurrentContent));
+//        if (mContentAdapter == null)
+//            return;
+//        
+//        setContent(mContentAdapter.getFragment(li, mCurrentContent));
     }
 
     @Override
@@ -78,13 +99,13 @@ public class ListContentFragment extends ActivityBaseFragment {
         super.onConfigurationChanged(newConfig);
         setPadding();
     }
-    
-    ListContentAdapter mContentAdapter;
-    public ListContentAdapter getContentAdapter() {
-        return mContentAdapter;
-    }
-    
-    public void setContentAdapter(ListContentAdapter adapter) {
-        mContentAdapter = adapter;
-    }
+//    
+//    ListContentAdapter mContentAdapter;
+//    public ListContentAdapter getContentAdapter() {
+//        return mContentAdapter;
+//    }
+//    
+//    public void setContentAdapter(ListContentAdapter adapter) {
+//        mContentAdapter = adapter;
+//    }
 }

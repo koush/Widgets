@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_content_container"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent" android:inAnimation="@android:anim/slide_in_left"
+    android:outAnimation="@android:anim/slide_out_right" >
 
-    <include layout="@layout/list_fragment" />
+    <LinearLayout
+    android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <include layout="@layout/list_fragment" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/content"
@@ -11,4 +19,4 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" />
 
-</FrameLayout>
+</ViewSwitcher>

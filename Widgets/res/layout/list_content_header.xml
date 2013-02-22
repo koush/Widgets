@@ -1,1 +1,10 @@
-<include xmlns:android="http://schemas.android.com/apk/res/android" layout="@layout/list_header" />
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_header_title"
+    style="@android:style/TextAppearance.Medium.Inverse"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="2dip"
+    android:paddingLeft="8dip"
+    android:paddingTop="2dip"
+        android:background="@color/holo_blue_light"
+/>

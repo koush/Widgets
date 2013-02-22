@@ -5,6 +5,11 @@
     android:minHeight="64dp"
     android:orientation="horizontal" >
 
+    <View
+        android:layout_width="10dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/activatedBackgroundIndicator" />
+
     <include layout="@layout/list_item_base" />
 
 </LinearLayout>
