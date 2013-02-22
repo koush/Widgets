@@ -30,16 +30,18 @@ public class ListContentFragment extends ActivityBaseFragment {
     Fragment mCurrentContent;
     
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View ret = super.onCreateView(inflater, container, savedInstanceState);
-
+    protected void onCreate(Bundle savedInstanceState, View ret) {
         mContent = (ViewGroup)ret.findViewById(R.id.content);
         mContainer = (ViewGroup)ret.findViewById(R.id.list_content_container);
 
         setPadding();
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         
-        return ret;
+        super.onCreate(savedInstanceState, ret);
+    }
+    
+    public boolean isPaged() {
+        return mContainer instanceof ViewSwitcher;
     }
     
     public void setContent(Fragment content) {
