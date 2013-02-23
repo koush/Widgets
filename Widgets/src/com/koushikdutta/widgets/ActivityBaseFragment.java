@@ -246,7 +246,7 @@ public class ActivityBaseFragment extends Fragment {
     TextView mEmpty;
     @Override
     public final View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View ret = inflater.inflate(getListFragmentResource(), null);
+        View ret = inflater.inflate(getListFragmentResource(), container, false);
 
         mTitleContainer = (ViewGroup)ret.findViewById(R.id.title_container);
 

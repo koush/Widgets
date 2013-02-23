@@ -33,30 +33,37 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin" >
 
-            <ListView
-                android:id="@+id/listview"
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_weight="1.6180339887498948482"
-                android:background="@drawable/list_content_left" />
-
-            <TextView
-                android:id="@+id/empty"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:textAppearance="@android:style/TextAppearance.Medium"
-                android:visibility="gone" />
+                android:background="@drawable/list_content_left"
+                android:orientation="vertical" >
+
+                <ListView
+                    android:id="@+id/listview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+
+                <TextView
+                    android:id="@+id/empty"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/activity_horizontal_margin"
+                    android:paddingTop="@dimen/activity_horizontal_margin"
+                    android:textAppearance="@android:style/TextAppearance.Medium"
+                    android:visibility="gone" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/content"
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
+                android:layout_weight="@dimen/golden_ratio"
                 android:background="@drawable/list_content_right"
                 android:orientation="vertical" />
         </LinearLayout>

@@ -48,9 +48,11 @@ public class ListContentFragment extends ActivityBaseFragment {
         Fragment last = mCurrentContent;
         mCurrentContent = content;
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.content, mCurrentContent);
         if (last != null)
-            ft.remove(last);
+            ft.replace(R.id.content, mCurrentContent);
+        else
+            ft.add(R.id.content, mCurrentContent);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         if (mContainer instanceof ViewSwitcher) {
             ViewSwitcher switcher = (ViewSwitcher)mContainer;
             if (mContent != switcher.getCurrentView())

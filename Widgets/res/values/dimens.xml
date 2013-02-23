@@ -4,4 +4,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <item type="dimen" name="golden_ratio">1.6180339887498948482</item>
 </resources>

@@ -29,6 +29,7 @@ public final class R {
          */
         public static int activity_horizontal_margin=0x7f050000;
         public static int activity_vertical_margin=0x7f050001;
+        public static int golden_ratio=0x7f050002;
     }
     public static final class drawable {
         public static int list_content_left=0x7f020000;
