@@ -2,13 +2,14 @@
 <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/list_content_container"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" android:inAnimation="@android:anim/slide_in_left"
+    android:layout_height="fill_parent"
+    android:inAnimation="@android:anim/slide_in_left"
     android:outAnimation="@android:anim/slide_out_right" >
 
     <LinearLayout
-    android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
 
         <include layout="@layout/list_fragment" />
     </LinearLayout>
@@ -16,7 +17,7 @@
     <LinearLayout
         android:id="@+id/content"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:orientation="vertical" />
 
 </ViewSwitcher>
