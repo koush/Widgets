@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.ViewSwitcher;
 
-public class ListContentFragment extends ActivityBaseFragment {
+public class ListContentFragment extends BetterListFragment {
     ViewGroup mContent;
     ViewGroup mContainer;
     
@@ -44,7 +44,7 @@ public class ListContentFragment extends ActivityBaseFragment {
         return mContainer instanceof ViewSwitcher;
     }
     
-    public void setContent(Fragment content) {
+    public void setContent(Fragment content, boolean clearChoices) {
         Fragment last = mCurrentContent;
         mCurrentContent = content;
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
@@ -59,6 +59,8 @@ public class ListContentFragment extends ActivityBaseFragment {
                 switcher.showNext();
         }
         ft.commit();
+        if (clearChoices)
+            getListView().clearChoices();
     }
 
     public boolean onBackPressed() {

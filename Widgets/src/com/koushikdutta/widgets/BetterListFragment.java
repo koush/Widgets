@@ -17,7 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ActivityBaseFragment extends Fragment {
+public class BetterListFragment extends Fragment {
     boolean mDestroyed = false;
     
     ListView mListView;
@@ -38,7 +38,7 @@ public class ActivityBaseFragment extends Fragment {
         
         @Override
         protected int getListHeaderResource() {
-            return ActivityBaseFragment.this.getListHeaderResource();
+            return BetterListFragment.this.getListHeaderResource();
         }
         
         @Override

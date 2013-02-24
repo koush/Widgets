@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class ListItem {
     private String Title;
     private String Summary;
-    private ActivityBaseFragment Context;
+    private BetterListFragment Context;
     private boolean Enabled = true;
 
     private int Icon;
@@ -71,7 +71,7 @@ public class ListItem {
         return this;
     }
     
-    public ListItem(ActivityBaseFragment context, int title, int summary) {
+    public ListItem(BetterListFragment context, int title, int summary) {
         if (title != 0)
             Title = context.getString(title);
         if (summary != 0)
@@ -79,24 +79,24 @@ public class ListItem {
         Context = context;
     }
     
-    public ListItem(ActivityBaseFragment context, String title, String summary) {
+    public ListItem(BetterListFragment context, String title, String summary) {
         Title = title;
         Summary = summary;
         Context = context;
     }
     
-    public ListItem(ActivityBaseFragment context, int title, int summary, int icon) {
+    public ListItem(BetterListFragment context, int title, int summary, int icon) {
         this(context, title, summary);
         Icon = icon;
     }
     
-    public ListItem(ActivityBaseFragment context, String title, String summary, int icon) {
+    public ListItem(BetterListFragment context, String title, String summary, int icon) {
         this(context, title, summary);
         Icon = icon;
     }
     
     Drawable mDrawable;
-    public ListItem(ActivityBaseFragment context, String title, String summary, Drawable drawable) {
+    public ListItem(BetterListFragment context, String title, String summary, Drawable drawable) {
         this(context, title, summary);
         mDrawable = drawable;
     }

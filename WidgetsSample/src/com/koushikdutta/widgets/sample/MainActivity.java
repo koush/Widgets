@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.koushikdutta.widgets.ActivityBase;
+import com.koushikdutta.widgets.BetterListActivity;
 import com.koushikdutta.widgets.ListItem;
 
 
-public class MainActivity extends ActivityBase {
+public class MainActivity extends BetterListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState, View view) {
         super.onCreate(savedInstanceState, view);

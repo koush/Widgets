@@ -1,6 +1,6 @@
 package com.koushikdutta.widgets;
 
-import com.koushikdutta.widgets.ActivityBaseFragment.ActivityBaseFragmentListener;
+import com.koushikdutta.widgets.BetterListFragment.ActivityBaseFragmentListener;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -8,19 +8,19 @@ import android.view.View;
 
 
 
-public class ActivityBase extends FragmentActivity implements ActivityBaseFragmentListener {
-    Class<? extends ActivityBaseFragment> clazz;
-    public ActivityBase(Class<? extends ActivityBaseFragment> clazz) {
+public class BetterListActivity extends FragmentActivity implements ActivityBaseFragmentListener {
+    Class<? extends BetterListFragment> clazz;
+    public BetterListActivity(Class<? extends BetterListFragment> clazz) {
         super();
         this.clazz = clazz;
     }
     
-    public ActivityBase() {
+    public BetterListActivity() {
         super();
-        this.clazz = ActivityBaseFragment.class;
+        this.clazz = BetterListFragment.class;
     }
     
-    public ActivityBaseFragment getFragment() {
+    public BetterListFragment getFragment() {
         return fragment;        
     }
     
@@ -36,7 +36,7 @@ public class ActivityBase extends FragmentActivity implements ActivityBaseFragme
         return 0;
     }
     
-    ActivityBaseFragment fragment;
+    BetterListFragment fragment;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
@@ -45,7 +45,7 @@ public class ActivityBase extends FragmentActivity implements ActivityBaseFragme
             setContentView(cv);
         
         try {
-            fragment = (ActivityBaseFragment)clazz.getConstructors()[0].newInstance();
+            fragment = (BetterListFragment)clazz.getConstructors()[0].newInstance();
             fragment.setArguments(getIntent().getExtras());
             fragment.setListener(this);
             getSupportFragmentManager().beginTransaction().add(getListContainerId(), fragment).commit();

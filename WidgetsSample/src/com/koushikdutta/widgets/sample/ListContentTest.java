@@ -8,14 +8,12 @@ import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.TextView;
 
-import com.koushikdutta.widgets.ActivityBase;
-import com.koushikdutta.widgets.ListContentAdapter;
+import com.koushikdutta.widgets.BetterListActivity;
 import com.koushikdutta.widgets.ListContentFragment;
 import com.koushikdutta.widgets.ListItem;
 
-public class ListContentTest extends ActivityBase {
+public class ListContentTest extends BetterListActivity {
     public ListContentTest() {
         super(ListContentFragment.class);
     }
