@@ -5,5 +5,6 @@
     android:minHeight="64dp"
     android:orientation="horizontal" >
 
-  <include layout="@layout/list_item_base" />
+    <include layout="@layout/list_item_base" />
+
 </LinearLayout>

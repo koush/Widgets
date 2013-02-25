@@ -4,8 +4,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -21,8 +19,8 @@ public class ListContentFragment extends BetterListFragment {
     }
     
     private void setPadding() {
-        float hor = getResources().getDimension(R.dimen.activity_horizontal_margin);
-        float ver = getResources().getDimension(R.dimen.activity_vertical_margin);
+        float hor = getResources().getDimension(R.dimen.list_horizontal_margin);
+        float ver = getResources().getDimension(R.dimen.list_vertical_margin);
         getListView().setPadding(0, 0, 0, 0);
         mContainer.setPadding((int)hor, (int)ver, (int)hor, (int)ver);
     }

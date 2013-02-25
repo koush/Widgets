@@ -26,8 +26,8 @@ public class BetterListFragment extends Fragment {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        float hor = getResources().getDimension(R.dimen.activity_horizontal_margin);
-        float ver = getResources().getDimension(R.dimen.activity_vertical_margin);
+        float hor = getResources().getDimension(R.dimen.list_horizontal_margin);
+        float ver = getResources().getDimension(R.dimen.list_vertical_margin);
         mListView.setPadding((int)hor, (int)ver, (int)hor, (int)ver);
     }
     

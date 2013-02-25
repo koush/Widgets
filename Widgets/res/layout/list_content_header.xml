@@ -3,8 +3,7 @@
     style="@android:style/TextAppearance.Medium.Inverse"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="@color/holo_blue_light"
     android:paddingBottom="2dip"
     android:paddingLeft="8dip"
-    android:paddingTop="2dip"
-        android:background="@color/holo_blue_light"
-/>
+    android:paddingTop="2dip" />

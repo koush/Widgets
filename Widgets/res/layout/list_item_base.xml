@@ -6,7 +6,7 @@
         android:layout_width="48dp"
         android:layout_height="32dp"
         android:layout_gravity="center_vertical"
-        android:layout_margin="2dp"
+        android:layout_margin="@dimen/section_padding"
         android:scaleType="fitCenter" >
     </ImageView>
 
@@ -21,14 +21,12 @@
             android:id="@+id/title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/primary_text_dark"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/summary"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/secondary_text_dark"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -37,8 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_margin="@dimen/section_padding"
         android:focusable="false"
         android:focusableInTouchMode="false" />
 
