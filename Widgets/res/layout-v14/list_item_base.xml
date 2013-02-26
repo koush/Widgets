@@ -10,7 +10,7 @@
         android:layout_width="48dp"
         android:layout_height="32dp"
         android:layout_gravity="center_vertical"
-        android:layout_margin="@dimen/section_padding"
+        android:layout_marginLeft="@dimen/section_padding"
         android:scaleType="fitCenter" >
     </ImageView>
 
@@ -18,6 +18,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/section_padding"
         android:layout_weight="1"
         android:orientation="vertical" >
 
