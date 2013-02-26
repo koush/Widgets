@@ -9,14 +9,32 @@ package com.koushikdutta.widgets.sample;
 
 public final class R {
     public static final class attr {
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int listContentBackground=0x7f010000;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int listItemsLeftBackground=0x7f010001;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int listItemsRightBackground=0x7f010002;
     }
     public static final class color {
         public static final int holo_blue_bright=0x7f040002;
         public static final int holo_blue_dark=0x7f040001;
         public static final int holo_blue_light=0x7f040000;
-        public static final int holo_red_dark=0x7f040005;
-        public static final int holo_red_light=0x7f040004;
-        public static final int list_content_background=0x7f040003;
+        public static final int holo_red_dark=0x7f040004;
+        public static final int holo_red_light=0x7f040003;
+        public static final int list_content_background=0x7f040005;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -47,8 +65,10 @@ public final class R {
         public static final int dropbox=0x7f020002;
         public static final int ic_launcher=0x7f020003;
         public static final int list_content_left=0x7f020004;
-        public static final int list_content_right=0x7f020005;
-        public static final int nexusone=0x7f020006;
+        public static final int list_content_left_dark=0x7f020005;
+        public static final int list_content_right=0x7f020006;
+        public static final int list_content_right_dark=0x7f020007;
+        public static final int nexusone=0x7f020008;
     }
     public static final class id {
         public static final int checkbox=0x7f08000b;
@@ -74,18 +94,18 @@ public final class R {
         public static final int list_item_selectable=0x7f030006;
     }
     public static final class string {
-        public static final int app_name=0x7f060000;
-        public static final int box=0x7f060005;
-        public static final int cloud=0x7f060001;
-        public static final int devices=0x7f060006;
-        public static final int dropbox=0x7f060004;
-        public static final int googledrive=0x7f060002;
-        public static final int googledrive_summary=0x7f060003;
+        public static final int app_name=0x7f070000;
+        public static final int box=0x7f070005;
+        public static final int cloud=0x7f070001;
+        public static final int devices=0x7f070006;
+        public static final int dropbox=0x7f070004;
+        public static final int googledrive=0x7f070002;
+        public static final int googledrive_summary=0x7f070003;
     }
     public static final class style {
         /**  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseDarkTheme=0x7f070002;
+        public static final int AppBaseDarkTheme=0x7f060002;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -102,15 +122,13 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f060000;
         /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppDarkTheme=0x7f070003;
+        public static final int AppDarkTheme=0x7f060003;
         /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
-        public static final int RequestTheme=0x7f070004;
+        public static final int AppTheme=0x7f060001;
+        public static final int RequestTheme=0x7f060004;
     }
 }

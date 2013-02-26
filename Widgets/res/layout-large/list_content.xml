@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/list_content_background" >
+    android:background="?attr/listContentBackground" >
 
     <ImageView
         android:id="@+id/watermark"
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
-                android:background="@drawable/list_content_left"
+                android:background="?attr/listItemsLeftBackground"
                 android:orientation="vertical" >
 
                 <ListView
@@ -64,7 +64,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="@dimen/golden_ratio"
-                android:background="@drawable/list_content_right"
+                android:background="?attr/listItemsRightBackground"
                 android:orientation="vertical" />
         </LinearLayout>
 

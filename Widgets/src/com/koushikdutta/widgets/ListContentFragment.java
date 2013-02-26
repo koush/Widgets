@@ -74,15 +74,6 @@ public class ListContentFragment extends BetterListFragment {
         }
         return false;
     }
-    
-    @Override
-    void onListItemClick(ListItem li) {
-        super.onListItemClick(li);
-//        if (mContentAdapter == null)
-//            return;
-//        
-//        setContent(mContentAdapter.getFragment(li, mCurrentContent));
-    }
 
     @Override
     protected int getListItemResource() {
@@ -103,13 +94,4 @@ public class ListContentFragment extends BetterListFragment {
         super.onConfigurationChanged(newConfig);
         setPadding();
     }
-//    
-//    ListContentAdapter mContentAdapter;
-//    public ListContentAdapter getContentAdapter() {
-//        return mContentAdapter;
-//    }
-//    
-//    public void setContentAdapter(ListContentAdapter adapter) {
-//        mContentAdapter = adapter;
-//    }
 }

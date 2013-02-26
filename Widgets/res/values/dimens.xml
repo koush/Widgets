@@ -6,7 +6,7 @@
 
     <item type="dimen" name="golden_ratio">1.6180339887498948482</item>
     <dimen name="content_padding">0dp</dimen>
-    <dimen name="section_padding">4dp</dimen>
+    <dimen name="section_padding">8dp</dimen>
     
     <dimen name="list_horizontal_margin">0dp</dimen>
     <dimen name="list_vertical_margin">0dp</dimen>

@@ -26,7 +26,7 @@
             android:name=".MainActivityDark" 
             android:theme="@style/AppDarkTheme" />
         <activity
-            android:name=".ListContentTest"/>
+            android:name=".ListContentTest"  />
     </application>
 
 </manifest>
