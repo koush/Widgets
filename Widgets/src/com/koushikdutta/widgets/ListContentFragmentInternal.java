@@ -54,15 +54,12 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
         return mContainer instanceof ViewSwitcher;
     }
     
-    void setContentNative(FragmentInterfaceWrapper last) {
+    void setContentNative() {
         android.app.Fragment f = (android.app.Fragment)mCurrentContent;
         Activity fa = getActivity();
         android.app.FragmentTransaction ft = fa.getFragmentManager().beginTransaction();
-        if (last != null)
-            ft.replace(R.id.content, f);
-        else
-            ft.add(R.id.content, f);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.replace(R.id.content, f);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         if (mContainer instanceof ViewSwitcher) {
             ViewSwitcher switcher = (ViewSwitcher)mContainer;
             if (mContent != switcher.getCurrentView())
@@ -72,16 +69,12 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
     }
     
     public void setContent(FragmentInterfaceWrapper content, boolean clearChoices) {
-        FragmentInterfaceWrapper last = mCurrentContent;
         mCurrentContent = content;
         if (getActivity() instanceof FragmentActivity) {
             Fragment f = (Fragment)mCurrentContent;
             FragmentActivity fa = (FragmentActivity)getActivity();
             FragmentTransaction ft = fa.getSupportFragmentManager().beginTransaction();
-            if (last != null)
-                ft.replace(R.id.content, f);
-            else
-                ft.add(R.id.content, f);
+            ft.replace(R.id.content, f);
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             if (mContainer instanceof ViewSwitcher) {
                 ViewSwitcher switcher = (ViewSwitcher)mContainer;
@@ -91,7 +84,7 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
             ft.commit();
         }
         else {
-            setContentNative(last);
+            setContentNative();
         }
 
         if (clearChoices)
