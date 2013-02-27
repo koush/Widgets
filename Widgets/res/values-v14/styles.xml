@@ -13,4 +13,11 @@
         <!-- API 14 theme customizations can go here. -->
     </style>
 
+    <style name="ListItemTitle" parent="@android:style/TextAppearance.Medium" >
+
+    </style>
+
+    <style name="ListItemSummary" parent="@android:style/TextAppearance.Small" >
+
+    </style>
 </resources>

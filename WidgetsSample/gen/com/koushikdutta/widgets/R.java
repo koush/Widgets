@@ -25,6 +25,8 @@ public final class R {
 		public static final int AppBaseDarkTheme = 0x7f060004;
 		public static final int AppDarkTheme = 0x7f060005;
 		public static final int ListContentIndicator = 0x7f060002;
+		public static final int ListItemSummary = 0x7f060007;
+		public static final int ListItemTitle = 0x7f060006;
 		public static final int AppBaseTheme = 0x7f060000;
 		public static final int AppTheme = 0x7f060001;
 		public static final int ListContentHeader = 0x7f060003;
@@ -58,9 +60,11 @@ public final class R {
 	public static final class attr {
 		public static final int listContentHeader = 0x7f010003;
 		public static final int listContentBackground = 0x7f010000;
-		public static final int listItemsRightBackground = 0x7f010002;
+		public static final int listItemImage = 0x7f010007;
+		public static final int iconSize = 0x7f010006;
 		public static final int listItemSelectableLargeBackground = 0x7f010004;
 		public static final int listItemSelectableLargeIndicatorStyle = 0x7f010005;
+		public static final int listItemsRightBackground = 0x7f010002;
 		public static final int listItemsLeftBackground = 0x7f010001;
 	}
 	public static final class dimen {

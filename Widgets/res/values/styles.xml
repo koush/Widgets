@@ -22,19 +22,22 @@
         <item name="listItemsRightBackground">@drawable/panel_bg_holo_light</item>
         <item name="listItemSelectableLargeBackground">@null</item>
         <item name="listItemSelectableLargeIndicatorStyle">?android:attr/activatedBackgroundIndicator</item>
-  </style>
+        <item name="iconSize">24dp</item>
+    </style>
 
     <style name="ListContentIndicator">
         <item name="android:visibility">gone</item>    
     </style>
-
+    
     <style name="ListContentHeader" parent="@android:style/TextAppearance.Medium.Inverse">
         <item name="android:background">@color/holo_blue_light</item>
         <item name="android:padding">10dp</item>
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="AppBaseDarkTheme" parent="android:Theme.Black"></style>
+    <style name="AppBaseDarkTheme" parent="android:Theme.Black">
+        
+    </style>
 
     <!-- Application theme. -->
     <style name="AppDarkTheme" parent="AppBaseDarkTheme">
@@ -46,7 +49,16 @@
         <item name="listItemsRightBackground">@drawable/panel_bg_holo_dark</item>
         <item name="listItemSelectableLargeBackground">?android:attr/activatedBackgroundIndicator</item>
         <item name="listItemSelectableLargeIndicatorStyle">@style/ListContentIndicator</item>
+        <item name="iconSize">24dp</item>
         
     </style>
 
+    <style name="ListItemTitle" >
+        <item name="android:textSize">18sp</item>
+        
+    </style>
+    <style name="ListItemSummary" >
+        <item name="android:textSize">12sp</item>
+        
+    </style>
 </resources>

@@ -7,5 +7,6 @@
     <attr name="listContentHeader" format="reference" />
     <attr name="listItemSelectableLargeBackground" format="reference|color" />
     <attr name="listItemSelectableLargeIndicatorStyle" format="reference" />
+    <attr name="iconSize" format="dimension" />
     
 </resources>

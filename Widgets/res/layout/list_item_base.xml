@@ -3,8 +3,8 @@
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="@android:dimen/app_icon_size"
-        android:layout_height="@android:dimen/app_icon_size"
+        android:layout_width="?attr/iconSize"
+        android:layout_height="?attr/iconSize"
         android:layout_gravity="center_vertical"
         android:scaleType="fitCenter" >
     </ImageView>
@@ -19,15 +19,15 @@
 
         <TextView
             android:id="@+id/title"
+            style="@style/ListItemTitle"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/summary"
+            style="@style/ListItemSummary"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="12sp" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <CheckBox

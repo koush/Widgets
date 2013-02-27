@@ -2,6 +2,8 @@ package com.koushikdutta.widgets;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -12,7 +14,7 @@ import android.widget.TextView;
 public class ListItem {
     private String Title;
     private String Summary;
-    private BetterListFragment Context;
+    private BetterListFragment mFragment;
     private boolean Enabled = true;
 
     private int Icon;
@@ -20,20 +22,28 @@ public class ListItem {
     public ListItem setIcon(int icon) {
         mDrawable = null;
         Icon = icon;
-        Context.mAdapter.notifyDataSetChanged();
+        mFragment.mAdapter.notifyDataSetChanged();
         return this;
     }
     
     public ListItem setDrawable(Drawable drawable) {
         mDrawable = drawable;
         Icon = 0;
-        Context.mAdapter.notifyDataSetChanged();
+        mFragment.mAdapter.notifyDataSetChanged();
+        return this;
+    }
+    
+    public ListItem setAttrDrawable(int attr) {
+        Context ctx = mFragment.getActivity();
+        TypedValue value = new TypedValue();
+        ctx.getTheme().resolveAttribute(attr, value, true);
+        setIcon(value.resourceId);
         return this;
     }
     
     public ListItem setEnabled(boolean enabled) {
         Enabled = enabled;
-        Context.mAdapter.notifyDataSetChanged();
+        mFragment.mAdapter.notifyDataSetChanged();
         return this;
     }
     
@@ -45,7 +55,7 @@ public class ListItem {
         if (title == 0)
             return setTitle(null);
         else
-            return setTitle(Context.getString(title));
+            return setTitle(mFragment.getString(title));
     }
     
     public String getTitle() {
@@ -54,7 +64,7 @@ public class ListItem {
     
     public ListItem setTitle(String title) {
         Title = title;
-        Context.mAdapter.notifyDataSetChanged();
+        mFragment.mAdapter.notifyDataSetChanged();
         return this;
     }
 
@@ -62,12 +72,12 @@ public class ListItem {
         if (summary == 0)
             return setSummary(null);
         else
-            return setSummary(Context.getString(summary));
+            return setSummary(mFragment.getString(summary));
     }
     
     public ListItem setSummary(String summary) {
         Summary = summary;
-        Context.mAdapter.notifyDataSetChanged();
+        mFragment.mAdapter.notifyDataSetChanged();
         return this;
     }
     
@@ -76,13 +86,13 @@ public class ListItem {
             Title = context.getString(title);
         if (summary != 0)
             Summary = context.getString(summary);
-        Context = context;
+        mFragment = context;
     }
     
     public ListItem(BetterListFragment context, String title, String summary) {
         Title = title;
         Summary = summary;
-        Context = context;
+        mFragment = context;
     }
     
     public ListItem(BetterListFragment context, int title, int summary, int icon) {
@@ -106,7 +116,7 @@ public class ListItem {
     
     public ListItem setCheckboxVisible(boolean visible) {
         CheckboxVisible = visible;
-        Context.mAdapter.notifyDataSetChanged();
+        mFragment.mAdapter.notifyDataSetChanged();
         return this;
     }
 
@@ -121,7 +131,7 @@ public class ListItem {
     public ListItem setChecked(boolean isChecked) {
         checked = isChecked;
         CheckboxVisible = true;
-        Context.mAdapter.notifyDataSetChanged();
+        mFragment.mAdapter.notifyDataSetChanged();
         return this;
     }
 //    
@@ -137,9 +147,28 @@ public class ListItem {
 //        view.setTag(view);
 //    }
     
+    private int mTheme;
+    public int getTheme() {
+        return mTheme;
+    }
+    
+    public ListItem setTheme(int theme) {
+        mTheme = theme;
+        return this;
+    }
+    
     public View getView(Context context, View convertView) {
-        if (convertView == null || convertView.getTag() != null)
-            convertView = LayoutInflater.from(context).inflate(Context.getListItemResource(), null);
+        if (convertView == null || convertView.getTag() != null) {
+            LayoutInflater inflater;
+            int theme = getTheme();
+            if (theme != 0) {
+                inflater = (LayoutInflater)new ContextThemeWrapper(context, theme).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            }
+            else {
+                inflater = LayoutInflater.from(context);
+            }
+            convertView = inflater.inflate(mFragment.getListItemResource(), null);
+        }
         
         
         TextView title = (TextView)convertView.findViewById(R.id.title);

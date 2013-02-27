@@ -241,7 +241,7 @@ public class BetterListFragment extends Fragment {
     void onListItemClick(ListItem li) {
         
     }
-    
+
     ViewGroup mTitleContainer;
     TextView mEmpty;
     @Override
