@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -16,9 +16,22 @@
     <style name="AppTheme" parent="AppBaseTheme">
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="listContentBackground">#f1f1f1</item>
-        <item name="listItemsLeftBackground">@drawable/list_content_left</item>
-        <item name="listItemsRightBackground">@drawable/list_content_right</item>
+        <item name="listContentHeader">@style/ListContentHeader</item>
+        <item name="listContentBackground">@null</item>
+        <item name="listItemsLeftBackground">@null</item>
+        <item name="listItemsRightBackground">@drawable/panel_bg_holo_light</item>
+        <item name="listItemSelectableLargeBackground">@null</item>
+        <item name="listItemSelectableLargeIndicatorStyle">?android:attr/activatedBackgroundIndicator</item>
+  </style>
+
+    <style name="ListContentIndicator">
+        <item name="android:visibility">gone</item>    
+    </style>
+
+    <style name="ListContentHeader" parent="@android:style/TextAppearance.Medium.Inverse">
+        <item name="android:background">@color/holo_blue_light</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="AppBaseDarkTheme" parent="android:Theme.Black"></style>
@@ -27,9 +40,13 @@
     <style name="AppDarkTheme" parent="AppBaseDarkTheme">
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="listContentBackground">#0f0f0f</item>
-        <item name="listItemsLeftBackground">@drawable/list_content_left_dark</item>
-        <item name="listItemsRightBackground">@drawable/list_content_right_dark</item>
+        <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
+        <item name="listContentBackground">@null</item>
+        <item name="listItemsLeftBackground">@null</item>
+        <item name="listItemsRightBackground">@drawable/panel_bg_holo_dark</item>
+        <item name="listItemSelectableLargeBackground">?android:attr/activatedBackgroundIndicator</item>
+        <item name="listItemSelectableLargeIndicatorStyle">@style/ListContentIndicator</item>
+        
     </style>
 
 </resources>

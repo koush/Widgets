@@ -8,6 +8,6 @@
     <dimen name="content_padding">0dp</dimen>
     <dimen name="section_padding">8dp</dimen>
     
-    <dimen name="list_horizontal_margin">0dp</dimen>
+    <dimen name="list_horizontal_margin">6dp</dimen>
     <dimen name="list_vertical_margin">0dp</dimen>
 </resources>

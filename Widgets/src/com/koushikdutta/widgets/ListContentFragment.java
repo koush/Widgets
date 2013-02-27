@@ -22,6 +22,7 @@ public class ListContentFragment extends BetterListFragment {
         float hor = getResources().getDimension(R.dimen.list_horizontal_margin);
         float ver = getResources().getDimension(R.dimen.list_vertical_margin);
         getListView().setPadding(0, 0, 0, 0);
+        ver = 0;
         mContainer.setPadding((int)hor, (int)ver, (int)hor, (int)ver);
     }
     

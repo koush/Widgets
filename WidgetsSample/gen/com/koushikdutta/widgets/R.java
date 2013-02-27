@@ -22,18 +22,21 @@ public final class R {
 		public static final int listview = 0x7f080004;
 	}
 	public static final class style {
-		public static final int AppBaseDarkTheme = 0x7f060002;
-		public static final int AppDarkTheme = 0x7f060003;
+		public static final int AppBaseDarkTheme = 0x7f060004;
+		public static final int AppDarkTheme = 0x7f060005;
+		public static final int ListContentIndicator = 0x7f060002;
 		public static final int AppBaseTheme = 0x7f060000;
 		public static final int AppTheme = 0x7f060001;
+		public static final int ListContentHeader = 0x7f060003;
 	}
 	public static final class color {
-		public static final int holo_red_light = 0x7f040003;
-		public static final int list_content_background = 0x7f040005;
-		public static final int holo_blue_bright = 0x7f040002;
+		public static final int list_separator = 0x7f040005;
 		public static final int holo_blue_light = 0x7f040000;
 		public static final int holo_red_dark = 0x7f040004;
 		public static final int holo_blue_dark = 0x7f040001;
+		public static final int holo_red_light = 0x7f040003;
+		public static final int holo_blue_bright = 0x7f040002;
+		public static final int list_content_background = 0x7f040006;
 	}
 	public static final class layout {
 		public static final int list_item_selectable = 0x7f030006;
@@ -45,11 +48,19 @@ public final class R {
 		public static final int list_fragment = 0x7f030002;
 	}
 	public static final class drawable {
+		public static final int panel_bg_holo_light = 0x7f02000a;
+		public static final int panel_bg_holo_dark = 0x7f020009;
 		public static final int list_content_right = 0x7f020006;
 		public static final int list_content_left = 0x7f020004;
+		public static final int list_content_left_dark = 0x7f020005;
+		public static final int list_content_right_dark = 0x7f020007;
 	}
 	public static final class attr {
+		public static final int listContentHeader = 0x7f010003;
 		public static final int listContentBackground = 0x7f010000;
+		public static final int listItemsRightBackground = 0x7f010002;
+		public static final int listItemSelectableLargeBackground = 0x7f010004;
+		public static final int listItemSelectableLargeIndicatorStyle = 0x7f010005;
 		public static final int listItemsLeftBackground = 0x7f010001;
 	}
 	public static final class dimen {

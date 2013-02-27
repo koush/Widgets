@@ -1,9 +1,5 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/list_header_title"
-    style="@android:style/TextAppearance.Medium.Inverse"
+    style="?attr/listContentHeader"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/holo_blue_light"
-    android:paddingBottom="2dip"
-    android:paddingLeft="8dip"
-    android:paddingTop="2dip" />
+    android:layout_height="wrap_content"  />

@@ -4,5 +4,8 @@
     <attr name="listContentBackground" format="reference|color" />
     <attr name="listItemsLeftBackground" format="reference|color" />
     <attr name="listItemsRightBackground" format="reference|color" />
+    <attr name="listContentHeader" format="reference" />
+    <attr name="listItemSelectableLargeBackground" format="reference|color" />
+    <attr name="listItemSelectableLargeIndicatorStyle" format="reference" />
     
 </resources>

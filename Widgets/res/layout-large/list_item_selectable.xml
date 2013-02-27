@@ -3,9 +3,12 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:background="?attr/listItemSelectableLargeBackground"
+     >
 
     <View
+        style="?attr/listItemSelectableLargeIndicatorStyle"
         android:layout_width="10dp"
         android:layout_height="match_parent"
         android:background="?android:attr/activatedBackgroundIndicator" />

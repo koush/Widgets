@@ -15,6 +15,20 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
         public static final int listContentBackground=0x7f010000;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int listContentHeader=0x7f010003;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int listItemSelectableLargeBackground=0x7f010004;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int listItemSelectableLargeIndicatorStyle=0x7f010005;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
@@ -34,7 +48,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int holo_blue_light=0x7f040000;
         public static final int holo_red_dark=0x7f040004;
         public static final int holo_red_light=0x7f040003;
-        public static final int list_content_background=0x7f040005;
+        public static final int list_content_background=0x7f040006;
+        public static final int list_separator=0x7f040005;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -69,6 +84,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int list_content_right=0x7f020006;
         public static final int list_content_right_dark=0x7f020007;
         public static final int nexusone=0x7f020008;
+        public static final int panel_bg_holo_dark=0x7f020009;
+        public static final int panel_bg_holo_light=0x7f02000a;
     }
     public static final class id {
         public static final int checkbox=0x7f08000b;
@@ -105,7 +122,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class style {
         /**  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseDarkTheme=0x7f060002;
+        public static final int AppBaseDarkTheme=0x7f060004;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -125,10 +142,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int AppBaseTheme=0x7f060000;
         /**  Application theme. 
          */
-        public static final int AppDarkTheme=0x7f060003;
+        public static final int AppDarkTheme=0x7f060005;
         /**  Application theme. 
          */
         public static final int AppTheme=0x7f060001;
-        public static final int RequestTheme=0x7f060004;
+        public static final int ListContentHeader=0x7f060003;
+        public static final int ListContentIndicator=0x7f060002;
+        public static final int RequestTheme=0x7f060006;
     }
 }
