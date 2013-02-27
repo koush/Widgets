@@ -1,10 +1,10 @@
 package com.koushikdutta.widgets;
 
-import com.koushikdutta.widgets.BetterListFragment.ActivityBaseFragmentListener;
-
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+
+import com.koushikdutta.widgets.BetterListFragmentInternal.ActivityBaseFragmentListener;
 
 
 
@@ -20,8 +20,8 @@ public class BetterListActivity extends FragmentActivity implements ActivityBase
         this.clazz = BetterListFragment.class;
     }
     
-    public BetterListFragment getFragment() {
-        return fragment;        
+    public BetterListFragmentInternal getFragment() {
+        return fragment.getInternal();        
     }
     
     public View getView() {
@@ -47,7 +47,7 @@ public class BetterListActivity extends FragmentActivity implements ActivityBase
         try {
             fragment = (BetterListFragment)clazz.getConstructors()[0].newInstance();
             fragment.setArguments(getIntent().getExtras());
-            fragment.setListener(this);
+            fragment.getInternal().setListener(this);
             getSupportFragmentManager().beginTransaction().add(getListContainerId(), fragment).commit();
         }
         catch (Exception e) {

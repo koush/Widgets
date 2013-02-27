@@ -14,7 +14,7 @@ import android.widget.TextView;
 public class ListItem {
     private String Title;
     private String Summary;
-    private BetterListFragment mFragment;
+    private BetterListFragmentInternal mFragment;
     private boolean Enabled = true;
 
     private int Icon;
@@ -33,11 +33,11 @@ public class ListItem {
         return this;
     }
     
+    int mAttr = 0;
     public ListItem setAttrDrawable(int attr) {
-        Context ctx = mFragment.getActivity();
-        TypedValue value = new TypedValue();
-        ctx.getTheme().resolveAttribute(attr, value, true);
-        setIcon(value.resourceId);
+        mAttr = attr;
+        mDrawable = null;
+        Icon = 0;
         return this;
     }
     
@@ -81,7 +81,7 @@ public class ListItem {
         return this;
     }
     
-    public ListItem(BetterListFragment context, int title, int summary) {
+    public ListItem(BetterListFragmentInternal context, int title, int summary) {
         if (title != 0)
             Title = context.getString(title);
         if (summary != 0)
@@ -89,24 +89,24 @@ public class ListItem {
         mFragment = context;
     }
     
-    public ListItem(BetterListFragment context, String title, String summary) {
+    public ListItem(BetterListFragmentInternal context, String title, String summary) {
         Title = title;
         Summary = summary;
         mFragment = context;
     }
     
-    public ListItem(BetterListFragment context, int title, int summary, int icon) {
+    public ListItem(BetterListFragmentInternal context, int title, int summary, int icon) {
         this(context, title, summary);
         Icon = icon;
     }
     
-    public ListItem(BetterListFragment context, String title, String summary, int icon) {
+    public ListItem(BetterListFragmentInternal context, String title, String summary, int icon) {
         this(context, title, summary);
         Icon = icon;
     }
     
     Drawable mDrawable;
-    public ListItem(BetterListFragment context, String title, String summary, Drawable drawable) {
+    public ListItem(BetterListFragmentInternal context, String title, String summary, Drawable drawable) {
         this(context, title, summary);
         mDrawable = drawable;
     }
@@ -158,18 +158,17 @@ public class ListItem {
     }
     
     public View getView(Context context, View convertView) {
+        LayoutInflater inflater;
+        int theme = getTheme();
+        if (theme != 0) {
+            inflater = (LayoutInflater) new ContextThemeWrapper(context, theme).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+        else {
+            inflater = LayoutInflater.from(context);
+        }
         if (convertView == null || convertView.getTag() != null) {
-            LayoutInflater inflater;
-            int theme = getTheme();
-            if (theme != 0) {
-                inflater = (LayoutInflater)new ContextThemeWrapper(context, theme).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            }
-            else {
-                inflater = LayoutInflater.from(context);
-            }
             convertView = inflater.inflate(mFragment.getListItemResource(), null);
         }
-        
         
         TextView title = (TextView)convertView.findViewById(R.id.title);
         TextView summary = (TextView)convertView.findViewById(R.id.summary);
@@ -209,6 +208,14 @@ public class ListItem {
 
         ImageView iv = (ImageView)convertView.findViewById(R.id.image);
         if (iv != null) {
+            if (mAttr != 0) {
+                Context ctx = inflater.getContext();
+                TypedValue value = new TypedValue();
+                ctx.getTheme().resolveAttribute(mAttr, value, true);
+                mAttr = 0;
+                Icon = value.resourceId;
+            }
+            
             if (Icon != 0) {
                 iv.setVisibility(View.VISIBLE);
                 iv.setImageResource(Icon);

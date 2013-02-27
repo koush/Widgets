@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.koushikdutta.widgets.BetterListActivity;
 import com.koushikdutta.widgets.ListContentFragment;
+import com.koushikdutta.widgets.ListContentFragmentInternal;
 import com.koushikdutta.widgets.ListItem;
 
 public class ListContentTest extends BetterListActivity {
@@ -18,8 +19,8 @@ public class ListContentTest extends BetterListActivity {
         super(ListContentFragment.class);
     }
     
-    public ListContentFragment getFragment() {
-        return (ListContentFragment)super.getFragment();
+    public ListContentFragmentInternal getFragment() {
+        return (ListContentFragmentInternal)super.getFragment();
     }
     
     protected void onResume() {
