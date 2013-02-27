@@ -224,6 +224,7 @@ public class BetterListFragmentInternal extends FragmentInterface {
     }
     
     protected void onCreate(Bundle savedInstanceState, View view) {
+        setPadding();
         if (mListener != null)
             mListener.onCreate(savedInstanceState, view);
     }
@@ -296,12 +297,15 @@ public class BetterListFragmentInternal extends FragmentInterface {
         return mTitleContainer;
     }
 
-    
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    protected void setPadding() {
         float hor = getActivity().getResources().getDimension(R.dimen.list_horizontal_margin);
         float ver = getActivity().getResources().getDimension(R.dimen.list_vertical_margin);
         mListView.setPadding((int)hor, (int)ver, (int)hor, (int)ver);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        setPadding();
     }
 
     @Override
@@ -338,7 +342,7 @@ public class BetterListFragmentInternal extends FragmentInterface {
         
         mListView.setAdapter(mAdapter);
         mEmpty = (TextView)ret.findViewById(R.id.empty);
-        
+
         onCreate(savedInstanceState, ret);
         return ret;
     }

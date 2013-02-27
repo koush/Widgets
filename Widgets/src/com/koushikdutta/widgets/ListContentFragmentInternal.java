@@ -15,6 +15,10 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
     ViewGroup mContent;
     ViewGroup mContainer;
 
+    public ViewGroup getContainer() {
+        return mContainer;
+    }
+    
     public ListContentFragmentInternal(FragmentInterfaceWrapper fragment) {
         super(fragment);
     }
@@ -24,7 +28,9 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
         return R.layout.list_content_header;
     }
     
-    private void setPadding() {
+    @Override
+    protected void setPadding() {
+        super.setPadding();
         float hor = getResources().getDimension(R.dimen.list_horizontal_margin);
         float ver = getResources().getDimension(R.dimen.list_vertical_margin);
         getListView().setPadding(0, 0, 0, 0);
@@ -39,7 +45,6 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
         mContent = (ViewGroup)ret.findViewById(R.id.content);
         mContainer = (ViewGroup)ret.findViewById(R.id.list_content_container);
 
-        setPadding();
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         
         super.onCreate(savedInstanceState, ret);
