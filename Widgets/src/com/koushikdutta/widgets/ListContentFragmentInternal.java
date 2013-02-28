@@ -1,6 +1,7 @@
 package com.koushikdutta.widgets;
 
 import junit.framework.Assert;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -63,27 +64,75 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
         return R.id.content;
     }
     
-    void setContentNative() {
+    static Object backstackListener;
+    static Object pendingFragment;
+
+    
+    @SuppressLint("InlinedApi")
+    private void onDetachNative() {
+        Activity fa = getActivity();
+        fa.getFragmentManager().popBackStack("content", android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+    
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        
+        if (getActivity() == null || getActivity().isFinishing() || getActivity().isChangingConfigurations())
+            return;
+        
+        if (!isPaged())
+            return;
+        
+        if (getActivity() instanceof FragmentActivity) {
+            FragmentActivity fa = (FragmentActivity)getActivity();
+            fa.getSupportFragmentManager().popBackStack("content", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+        else {
+            onDetachNative();
+        }
+    }
+    
+    Object listener;
+    @SuppressLint("InlinedApi")
+    void setContentNative(final String breadcrumb) {
         android.app.Fragment f = (android.app.Fragment)mCurrentContent;
         Activity fa = getActivity();
         final android.app.FragmentManager fm = fa.getFragmentManager();
+
         android.app.FragmentTransaction ft = fm.beginTransaction();
         if (isPaged()) {
-            final int curSize = fm.getBackStackEntryCount();
-            View v = getFragment().getView();
-            Assert.assertNotNull(v);
-            final View l = v.findViewById(R.id.list_fragment);
-            Assert.assertNotNull(l);
-            l.setVisibility(View.GONE);
-            fm.addOnBackStackChangedListener(new android.app.FragmentManager.OnBackStackChangedListener() {
-                @Override
-                public void onBackStackChanged() {
-                    if (curSize != fm.getBackStackEntryCount())
-                        return;
-                    l.setVisibility(View.VISIBLE);
-                    fm.removeOnBackStackChangedListener(this);
-                }
-            });
+            if (listener == null) {
+                fm.addOnBackStackChangedListener(new android.app.FragmentManager.OnBackStackChangedListener() {
+                    {
+                        listener = this;
+                    }
+                    @Override
+                    public void onBackStackChanged() {
+                        android.app.Fragment f = (android.app.Fragment)getFragment();
+                        if (f.isDetached() || f.isRemoving()) {
+                            fm.removeOnBackStackChangedListener(this);
+                            return;
+                        }
+                        View v = getFragment().getView();
+                        if (v == null)
+                            return;
+                        final View l = v.findViewById(R.id.list_fragment);
+                        if (l == null)
+                            return;
+                        if (fm.getBackStackEntryCount() > 0 && "content".equals(fm.getBackStackEntryAt(fm.getBackStackEntryCount() - 1).getName())) {
+                            l.setVisibility(View.GONE);
+                        }
+                        else {
+                            l.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+            }
+            
+            fm.popBackStack("content", android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            ft.setBreadCrumbTitle(breadcrumb);
+            ft.setBreadCrumbShortTitle(breadcrumb);
             ft.addToBackStack("content");
         }
         ft.replace(getContentId(), f, "content");
@@ -91,7 +140,7 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
         ft.commit();
     }
     
-    public void setContent(FragmentInterfaceWrapper content, boolean clearChoices) {
+    public void setContent(FragmentInterfaceWrapper content, boolean clearChoices, String breadcrumb) {
         mCurrentContent = content;
         if (getActivity() instanceof FragmentActivity) {
             Fragment f = (Fragment)mCurrentContent;
@@ -121,7 +170,7 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
             ft.commit();
         }
         else {
-            setContentNative();
+            setContentNative(breadcrumb);
         }
 
         if (clearChoices)

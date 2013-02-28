@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import junit.framework.Assert;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -310,15 +311,16 @@ public class BetterListFragmentInternal extends FragmentInterface {
         setPadding();
     }
 
-    int containerId;
-    public int getContainerId() {
-        return containerId;
+    @Override
+    public void onDetach() {
+    }
+    
+    @Override
+    public void onAttach(Activity activity) {
     }
     
     @Override
     public final View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        containerId = container.getId();
-        Assert.assertTrue(containerId > 0);
         View ret = inflater.inflate(getListFragmentResource(), container, false);
 
         mTitleContainer = (ViewGroup)ret.findViewById(R.id.title_container);

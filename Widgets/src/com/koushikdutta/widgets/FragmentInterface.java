@@ -49,4 +49,6 @@ public abstract class FragmentInterface {
 
     abstract public void onCreateOptionsMenu(Menu menu, MenuInflater inflater);
 
+    abstract public void onDetach();
+    abstract public void onAttach(Activity activity);
 }

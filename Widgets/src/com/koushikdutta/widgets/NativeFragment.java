@@ -1,5 +1,6 @@
 package com.koushikdutta.widgets;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -12,6 +13,21 @@ import android.view.ViewGroup;
 
 public abstract class NativeFragment<T extends FragmentInterface> extends Fragment implements FragmentInterfaceWrapper {
     public abstract T createFragmentInterface();
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+    
+    public void onDetach() {
+        super.onDetach();
+        internal.onDetach();
+    };
+    
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        internal.onAttach(activity);
+    };
     
     T internal;
     public NativeFragment() {
