@@ -54,7 +54,6 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
     }
     
     public boolean isPaged() {
-//        return mContainer instanceof ViewSwitcher;
         return mContent == null;
     }
     
