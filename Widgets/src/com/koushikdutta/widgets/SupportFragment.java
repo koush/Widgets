@@ -1,5 +1,6 @@
 package com.koushikdutta.widgets;
 
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -45,5 +46,17 @@ public abstract class SupportFragment<T extends FragmentInterface> extends Fragm
         super.onCreateOptionsMenu(menu, inflater);
         
         internal.onCreateOptionsMenu(menu, inflater);
+    }
+    
+    @Override
+    public void onDetach() {
+        // TODO Auto-generated method stub
+        super.onDetach();
+    }
+    
+    @Override
+    public void onAttach(Activity activity) {
+        // TODO Auto-generated method stub
+        super.onAttach(activity);
     }
 }

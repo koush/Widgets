@@ -154,14 +154,34 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
                 Assert.assertNotNull(l);
                 l.setVisibility(View.GONE);
                 fm.addOnBackStackChangedListener(new OnBackStackChangedListener() {
+                    {
+                        listener = this;
+                    }
                     @Override
                     public void onBackStackChanged() {
-                        if (curSize != fm.getBackStackEntryCount())
+                        Fragment f = (Fragment)getFragment();
+                        if (f.isDetached() || f.isRemoving()) {
+                            fm.removeOnBackStackChangedListener(this);
                             return;
-                        l.setVisibility(View.VISIBLE);
-                        fm.removeOnBackStackChangedListener(this);
+                        }
+                        View v = getFragment().getView();
+                        if (v == null)
+                            return;
+                        final View l = v.findViewById(R.id.list_fragment);
+                        if (l == null)
+                            return;
+                        if (fm.getBackStackEntryCount() > 0 && "content".equals(fm.getBackStackEntryAt(fm.getBackStackEntryCount() - 1).getName())) {
+                            l.setVisibility(View.GONE);
+                        }
+                        else {
+                            l.setVisibility(View.VISIBLE);
+                        }
                     }
                 });
+
+                fm.popBackStack("content", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                ft.setBreadCrumbTitle(breadcrumb);
+                ft.setBreadCrumbShortTitle(breadcrumb);
                 ft.addToBackStack("content");
             }
             ft.replace(getContentId(), f, "content");

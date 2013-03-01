@@ -12,4 +12,6 @@ public interface FragmentInterfaceWrapper {
     void setArguments(Bundle bundle);
     Bundle getArguments();
     View getView();
+    
+    int getId();
 }
