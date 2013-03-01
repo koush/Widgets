@@ -17,6 +17,7 @@
 package com.koushikdutta.widgets;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,10 @@ import android.view.ViewGroup;
 
 public abstract class SupportFragment<T extends FragmentInterface> extends Fragment implements FragmentInterfaceWrapper {
     public abstract T createFragmentInterface();
+    
+    public Context getContext() {
+        return getActivity();
+    }
     
     T internal;
     public SupportFragment() {

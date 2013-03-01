@@ -17,11 +17,13 @@
 package com.koushikdutta.widgets;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
 public interface FragmentInterfaceWrapper {
     public Activity getActivity();
+    public Context getContext();
     public FragmentInterface getInternal();
     public void setHasOptionsMenu(boolean options);
     

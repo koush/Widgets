@@ -150,38 +150,9 @@ public class ListItem {
         mFragment.mAdapter.notifyDataSetChanged();
         return this;
     }
-//    
-//    boolean mUseOnOff = false;
-//    public void useYesNo() {
-//        mUseOnOff = true;
-//    }
-//    
-//    private void setSwitch(View view) {
-//        Switch s = (Switch)view;
-//        s.setTextOn(Context.getString(R.string.yes).toUpperCase());
-//        s.setTextOff(Context.getString(R.string.no).toUpperCase());
-//        view.setTag(view);
-//    }
-    
-    private int mTheme;
-    public int getTheme() {
-        return mTheme;
-    }
-    
-    public ListItem setTheme(int theme) {
-        mTheme = theme;
-        return this;
-    }
     
     public View getView(Context context, View convertView) {
-        LayoutInflater inflater;
-        int theme = getTheme();
-        if (theme != 0) {
-            inflater = (LayoutInflater) new ContextThemeWrapper(context, theme).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-        else {
-            inflater = LayoutInflater.from(context);
-        }
+        LayoutInflater inflater = LayoutInflater.from(context);
         if (convertView == null || convertView.getTag() != null) {
             convertView = inflater.inflate(mFragment.getListItemResource(), null);
         }
@@ -199,9 +170,7 @@ public class ListItem {
                 ListItem.this.onClick(cv);
             }
         });
-//        if (mUseOnOff && !(cb instanceof CheckBox)) {
-//            setSwitch(cb);
-//        }
+
         cb.setVisibility(CheckboxVisible ? View.VISIBLE : View.GONE);
         cb.setChecked(checked);
 

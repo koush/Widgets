@@ -163,7 +163,6 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
             final FragmentManager fm = fa.getSupportFragmentManager();
             FragmentTransaction ft = fa.getSupportFragmentManager().beginTransaction();
             if (isPaged()) {
-                final int curSize = fm.getBackStackEntryCount();
                 View v = getFragment().getView();
                 Assert.assertNotNull(v);
                 final View l = v.findViewById(R.id.list_fragment);

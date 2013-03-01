@@ -18,6 +18,7 @@ package com.koushikdutta.widgets;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,6 +34,11 @@ public abstract class NativeFragment<T extends FragmentInterface> extends Fragme
     @Override
     public void onResume() {
         super.onResume();
+    }
+    
+    @Override
+    public Context getContext() {
+        return getActivity();
     }
     
     public void onDetach() {

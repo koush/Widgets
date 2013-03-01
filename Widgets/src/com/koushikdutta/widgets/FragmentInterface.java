@@ -35,7 +35,7 @@ public abstract class FragmentInterface {
     }
     
     public Context getContext() {
-        return getFragment().getActivity();
+        return getFragment().getContext();
     }
     
     public FragmentInterfaceWrapper getFragment() {

@@ -139,7 +139,7 @@ public class BetterListFragmentInternal extends FragmentInterface {
 //    HashMap<String, MyListAdapter> mAdapters = new HashMap<String, ActivityBaseFragment.MyListAdapter>();
     
     public ListItemAdapter ensureHeader(int sectionName) {
-        return ensureHeader(mAdapter.getSectionCount(), getActivity().getString(sectionName));
+        return ensureHeader(mAdapter.getSectionCount(), getContext().getString(sectionName));
     }
     
     public ListItemAdapter ensureHeader(String sectionName) {
@@ -147,7 +147,7 @@ public class BetterListFragmentInternal extends FragmentInterface {
     }
 
     public ListItemAdapter ensureHeader(int index, int sectionName) {
-        return ensureHeader(index, getActivity().getString(sectionName));
+        return ensureHeader(index, getContext().getString(sectionName));
     }
     public ListItemAdapter ensureHeader(int index, String sectionName) {
         ListItemAdapter adapter = mAdapter.getSection(sectionName);
@@ -161,7 +161,7 @@ public class BetterListFragmentInternal extends FragmentInterface {
     }
     
     public ListItemAdapter getSection(int section) {
-        return getSection(getActivity().getString(section));
+        return getSection(getContext().getString(section));
     }
     
     public ListItemAdapter getSection(String section) {
@@ -169,11 +169,11 @@ public class BetterListFragmentInternal extends FragmentInterface {
     }
 
     public ListItem addItem(int sectionName, ListItem item) {
-        return addItem(getActivity().getString(sectionName), item);
+        return addItem(getContext().getString(sectionName), item);
     }
 
     public ListItem addItem(int sectionName, ListItem item, int index) {
-        return addItem(getActivity().getString(sectionName), item, index);
+        return addItem(getContext().getString(sectionName), item, index);
     }
     
     public ListItem addItem(String sectionName, ListItem item) {
@@ -181,7 +181,7 @@ public class BetterListFragmentInternal extends FragmentInterface {
     }
     
     public int getSectionItemCount(int section) {
-        return getSectionItemCount(getActivity().getString(section));
+        return getSectionItemCount(getContext().getString(section));
     }
     
     public int getSectionItemCount(String section) {
@@ -213,7 +213,7 @@ public class BetterListFragmentInternal extends FragmentInterface {
     }
     
     public ListItem findItem(int item) {
-        String text = getActivity().getString(item);
+        String text = getContext().getString(item);
         
         for (ListItemAdapter adapter: mAdapter.getSections())
         {
@@ -315,8 +315,8 @@ public class BetterListFragmentInternal extends FragmentInterface {
     }
 
     protected void setPadding() {
-        float hor = getActivity().getResources().getDimension(R.dimen.list_horizontal_margin);
-        float ver = getActivity().getResources().getDimension(R.dimen.list_vertical_margin);
+        float hor = getContext().getResources().getDimension(R.dimen.list_horizontal_margin);
+        float ver = getContext().getResources().getDimension(R.dimen.list_vertical_margin);
         mListView.setPadding((int)hor, (int)ver, (int)hor, (int)ver);
     }
 
