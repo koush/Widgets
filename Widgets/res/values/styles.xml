@@ -10,13 +10,14 @@
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         -->
+        <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
+        <item name="listHeaderTextColor">@color/holo_blue_dark</item>
     </style>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="listContentHeader">@style/ListContentHeader</item>
         <item name="listContentBackground">@null</item>
         <item name="listItemsLeftBackground">@null</item>
         <item name="listItemsRightBackground">@drawable/panel_bg_holo_light</item>
@@ -28,22 +29,16 @@
     <style name="ListContentIndicator">
         <item name="android:visibility">gone</item>    
     </style>
-    
-    <style name="ListContentHeader" parent="@android:style/TextAppearance.Medium.Inverse">
-        <item name="android:background">@color/holo_blue_light</item>
-        <item name="android:padding">10dp</item>
-        <item name="android:gravity">center</item>
-    </style>
 
     <style name="AppBaseDarkTheme" parent="android:Theme.Black">
-        
+        <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
+        <item name="listHeaderTextColor">@null</item>
     </style>
 
     <!-- Application theme. -->
     <style name="AppDarkTheme" parent="AppBaseDarkTheme">
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
         <item name="listContentBackground">@null</item>
         <item name="listItemsLeftBackground">@null</item>
         <item name="listItemsRightBackground">@drawable/panel_bg_holo_dark</item>

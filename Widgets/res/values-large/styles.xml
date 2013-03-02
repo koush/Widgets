@@ -1,0 +1,25 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseLargeTheme" parent="android:Theme">
+    </style>
+
+    <style name="AppBaseDarkLargeTheme" parent="android:Theme.Black">
+    </style>
+
+    <style name="AppBaseTheme" parent="@style/AppBaseLargeTheme">
+        <item name="listContentHeader">@style/ListContentHeader</item>
+        <item name="listHeaderTextColor">@color/holo_blue_dark</item>
+    </style>
+
+    <style name="AppBaseDarkTheme" parent="@style/AppBaseDarkLargeTheme">
+        <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
+        <item name="listHeaderTextColor">@null</item>
+    </style>
+
+    <style name="ListContentHeader" parent="@android:style/TextAppearance.Medium.Inverse">
+        <item name="android:background">@color/holo_blue_light</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+</resources>

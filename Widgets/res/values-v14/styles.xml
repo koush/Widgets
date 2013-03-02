@@ -6,11 +6,13 @@
         res/values-v11/styles.xml on API 14+ devices.
     -->
     <style name="AppBaseTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
-        <!-- API 14 theme customizations can go here. -->
+        <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
+        <item name="listHeaderTextColor">@color/holo_blue_dark</item>
     </style>
 
     <style name="AppBaseDarkTheme" parent="android:Theme.Holo">
-        <!-- API 14 theme customizations can go here. -->
+        <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
+        <item name="listHeaderTextColor">@null</item>
     </style>
 
     <style name="ListItemTitle" parent="@android:style/TextAppearance.Medium" >

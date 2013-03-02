@@ -29,6 +29,13 @@ public class MainActivity extends BetterListActivity {
             }
         });
         
+        addItem("Theme", new ListItem(getFragment(), "Content", "Dark Theme", R.drawable.ic_launcher) {
+            @Override
+            public void onClick(View view) {
+                super.onClick(view);
+                startActivity(new Intent(MainActivity.this, ListContentTestDark.class));
+            }
+        });
         addItem(R.string.cloud, new ListItem(getFragment(), R.string.googledrive, R.string.googledrive_summary, R.drawable.drive) {
             @Override
             public void onClick(View view) {
