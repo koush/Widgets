@@ -16,7 +16,7 @@
         android:layout_height="fill_parent"
         android:layout_weight="1"
         android:paddingBottom="@dimen/list_vertical_margin"
-        android:paddingLeft="?android:attr/listPreferredItemPaddingStart"
+        android:paddingLeft="@dimen/list_horizontal_margin"
         android:paddingRight="@dimen/list_horizontal_margin"
         android:paddingTop="@dimen/list_vertical_margin" />
 
