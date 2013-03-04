@@ -67,4 +67,5 @@ public abstract class FragmentInterface {
 
     abstract public void onDetach();
     abstract public void onAttach(Activity activity);
+    abstract public void onResume();
 }

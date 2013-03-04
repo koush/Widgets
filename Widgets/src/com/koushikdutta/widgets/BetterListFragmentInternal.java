@@ -38,6 +38,10 @@ public class BetterListFragmentInternal extends FragmentInterface {
     ListView mListView;
     MyAdapter mAdapter;
     
+    @Override
+    public void onResume() {
+    }
+    
     public BetterListFragmentInternal(FragmentInterfaceWrapper fragment) {
         super(fragment);
     }

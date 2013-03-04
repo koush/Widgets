@@ -31,6 +31,12 @@ import android.view.ViewGroup;
 public abstract class SupportFragment<T extends FragmentInterface> extends Fragment implements FragmentInterfaceWrapper {
     public abstract T createFragmentInterface();
     
+    @Override
+    public void onResume() {
+        super.onResume();
+        internal.onResume();
+    }
+    
     public Context getContext() {
         return getActivity();
     }

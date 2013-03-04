@@ -34,6 +34,7 @@ public abstract class NativeFragment<T extends FragmentInterface> extends Fragme
     @Override
     public void onResume() {
         super.onResume();
+        internal.onResume();
     }
     
     @Override
