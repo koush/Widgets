@@ -46,17 +46,7 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
     protected int getListHeaderResource() {
         return R.layout.list_content_header;
     }
-    
-    @Override
-    protected void setPadding() {
-        super.setPadding();
-        float hor = getResources().getDimension(R.dimen.list_horizontal_margin);
-        float ver = getResources().getDimension(R.dimen.list_vertical_margin);
-        getListView().setPadding(0, 0, 0, 0);
-        ver = 0;
-        mContainer.setPadding((int)hor, (int)ver, (int)hor, (int)ver);
-    }
-    
+
     FragmentInterfaceWrapper mCurrentContent;
     
     @Override
@@ -219,11 +209,5 @@ public class ListContentFragmentInternal extends BetterListFragmentInternal {
     @Override
     protected int getListFragmentResource() {
         return R.layout.list_content;
-    }
-    
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        setPadding();
     }
 }

@@ -1,6 +1,14 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/list_header_title"
-    android:textColor="?attr/listHeaderTextColor"
-    style="?attr/listContentHeader"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"  />
+    android:layout_height="wrap_content"
+    android:paddingEnd="?attr/listItemMarginHorizontal"
+    android:paddingStart="?attr/listItemMarginHorizontal" >
+
+    <TextView
+        android:id="@android:id/text1"
+        style="?attr/listContentHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/listHeaderTextColor" />
+
+</LinearLayout>

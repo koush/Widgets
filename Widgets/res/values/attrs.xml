@@ -9,4 +9,5 @@
     <attr name="listItemSelectableLargeBackground" format="reference|color" />
     <attr name="listItemSelectableLargeIndicatorStyle" format="reference" />
     <attr name="iconSize" format="dimension" />
+    <attr name="listItemMarginHorizontal" format="dimension" />
 </resources>

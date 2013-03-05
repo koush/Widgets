@@ -45,11 +45,11 @@ public class BetterListActivity extends FragmentActivity implements ActivityBase
     }
     
     protected int getListContainerId() {
-        return android.R.id.content;
+        return R.id.activity_content;
     }
     
     protected int getContentView() {
-        return 0;
+        return R.layout.container_activity;
     }
     
     BetterListFragment fragment;

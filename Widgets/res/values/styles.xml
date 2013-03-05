@@ -24,6 +24,8 @@
         <item name="listItemSelectableLargeBackground">@null</item>
         <item name="listItemSelectableLargeIndicatorStyle">?android:attr/activatedBackgroundIndicator</item>
         <item name="iconSize">24dp</item>
+        <item name="listItemMarginHorizontal">?android:attr/listPreferredItemPaddingStart</item>
+    
     </style>
 
     <style name="ListContentIndicator">
@@ -45,9 +47,24 @@
         <item name="listItemSelectableLargeBackground">?android:attr/activatedBackgroundIndicator</item>
         <item name="listItemSelectableLargeIndicatorStyle">@style/ListContentIndicator</item>
         <item name="iconSize">24dp</item>
+        <item name="listItemMarginHorizontal">?android:attr/listPreferredItemPaddingStart</item>
         
     </style>
-
+    
+    <style name="AppActivityBaseTheme" parent="AppTheme">
+    </style>
+    
+    <style name="AppDarkActivityBaseTheme" parent="AppDarkTheme">
+    </style>
+    
+    <style name="AppActivityTheme" parent="AppActivityBaseTheme">
+        <item name="listItemMarginHorizontal">@dimen/activity_horizontal_margin</item>
+    </style>
+    
+    <style name="AppDarkActivityTheme" parent="AppDarkActivityBaseTheme">
+        <item name="listItemMarginHorizontal">@dimen/activity_horizontal_margin</item>
+    </style>
+    
     <style name="ListItemTitle" >
         <item name="android:textSize">18sp</item>
         

@@ -16,6 +16,14 @@
         <item name="listHeaderTextColor">@null</item>
     </style>
 
+    <style name="AppActivityTheme" parent="AppActivityBaseTheme">
+        <item name="listItemMarginHorizontal">0dp</item>
+    </style>
+    
+    <style name="AppDarkActivityTheme" parent="AppDarkActivityBaseTheme">
+        <item name="listItemMarginHorizontal">0dp</item>
+    </style>
+    
     <style name="ListContentHeader" parent="@android:style/TextAppearance.Medium.Inverse">
         <item name="android:background">@color/holo_blue_light</item>
         <item name="android:padding">10dp</item>

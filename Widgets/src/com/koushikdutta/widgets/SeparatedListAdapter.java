@@ -41,7 +41,7 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
     private final static int TYPE_SECTION_HEADER = 0;
 
     public SeparatedListAdapter(Context context) {
-        headers = new ArrayAdapter<String>(context, getListHeaderResource());
+        headers = new ArrayAdapter<String>(context, getListHeaderResource(), android.R.id.text1);
     }
 
     public void addSection(String section, T adapter) {
