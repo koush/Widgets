@@ -64,7 +64,7 @@ public class BetterListActivity extends FragmentActivity implements ActivityBase
             fragment = (BetterListFragment)clazz.getConstructors()[0].newInstance();
             fragment.setArguments(getIntent().getExtras());
             fragment.getInternal().setListener(this);
-            getSupportFragmentManager().beginTransaction().add(getListContainerId(), fragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(getListContainerId(), fragment, "betterlist").commit();
         }
         catch (Exception e) {
             e.printStackTrace();
