@@ -362,10 +362,10 @@ public class BetterListFragmentInternal extends FragmentInterface {
             }
         });
         
-        mListView.setAdapter(mAdapter);
         mEmpty = (TextView)ret.findViewById(R.id.empty);
 
         onCreate(savedInstanceState, ret);
+        mListView.setAdapter(mAdapter);
         return ret;
     }
 
