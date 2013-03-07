@@ -1,10 +1,13 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <style name="AndroidTheme" parent="@android:style/Theme.Light" />
+    <style name="AndroidDarkTheme" parent="@android:style/Theme.Black" />
+    
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="@android:style/Theme.Light">
+    <style name="AppBaseTheme" parent="AndroidTheme">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
@@ -32,7 +35,7 @@
         <item name="android:visibility">gone</item>    
     </style>
 
-    <style name="AppBaseDarkTheme" parent="android:Theme.Black">
+    <style name="AppBaseDarkTheme" parent="AndroidDarkTheme">
         <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
         <item name="listHeaderTextColor">@null</item>
     </style>
