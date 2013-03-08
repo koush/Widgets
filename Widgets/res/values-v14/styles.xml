@@ -11,11 +11,17 @@
     <style name="AppBaseTheme" parent="AndroidTheme">
         <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
         <item name="listHeaderTextColor">@color/holo_blue_dark</item>
+        <item name="listPreferredItemPaddingLeft">?android:attr/listPreferredItemPaddingLeft</item>
+        <item name="listPreferredItemPaddingRight">?android:attr/listPreferredItemPaddingRight</item>
+        
     </style>
 
     <style name="AppBaseDarkTheme" parent="AndroidDarkTheme">
         <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
         <item name="listHeaderTextColor">@null</item>
+        <item name="listPreferredItemPaddingLeft">?android:attr/listPreferredItemPaddingLeft</item>
+        <item name="listPreferredItemPaddingRight">?android:attr/listPreferredItemPaddingRight</item>
+        
     </style>
 
     <style name="ListItemTitle" parent="@android:style/TextAppearance.Medium" >

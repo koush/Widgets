@@ -5,8 +5,8 @@
     android:background="?attr/listItemSelectableLargeBackground"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal"
-    android:paddingEnd="?attr/listItemMarginHorizontal"
-    android:paddingStart="?attr/listItemMarginHorizontal" >
+    android:paddingRight="?attr/listPreferredItemPaddingRight"
+    android:paddingLeft="?attr/listPreferredItemPaddingLeft" >
 
     <View
         style="?attr/listItemSelectableLargeIndicatorStyle"

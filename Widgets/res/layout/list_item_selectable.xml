@@ -5,8 +5,8 @@
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal"
     android:paddingBottom="8dip"
-    android:paddingEnd="?attr/listItemMarginHorizontal"
-    android:paddingStart="?attr/listItemMarginHorizontal"
+    android:paddingRight="?attr/listPreferredItemPaddingRight"
+    android:paddingLeft="?attr/listPreferredItemPaddingLeft"
     android:paddingTop="8dip" >
 
     <include layout="@layout/list_item_base" />

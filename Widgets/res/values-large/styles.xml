@@ -1,9 +1,13 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppBaseLargeTheme" parent="android:Theme">
+        <item name="listPreferredItemPaddingLeft">6dp</item>
+        <item name="listPreferredItemPaddingRight">6dp</item>
     </style>
 
     <style name="AppBaseDarkLargeTheme" parent="android:Theme.Black">
+        <item name="listPreferredItemPaddingLeft">6dp</item>
+        <item name="listPreferredItemPaddingRight">6dp</item>
     </style>
 
     <style name="AppBaseTheme" parent="@style/AppBaseLargeTheme">
@@ -17,11 +21,13 @@
     </style>
 
     <style name="AppActivityTheme" parent="AppActivityBaseTheme">
-        <item name="listItemMarginHorizontal">0dp</item>
+        <item name="listPreferredItemPaddingLeft">0dp</item>
+        <item name="listPreferredItemPaddingRight">0dp</item>
     </style>
     
     <style name="AppDarkActivityTheme" parent="AppDarkActivityBaseTheme">
-        <item name="listItemMarginHorizontal">0dp</item>
+        <item name="listPreferredItemPaddingLeft">0dp</item>
+        <item name="listPreferredItemPaddingRight">0dp</item>
     </style>
     
     <style name="ListContentHeader" parent="@android:style/TextAppearance.Medium.Inverse">

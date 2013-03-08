@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:paddingEnd="?attr/listItemMarginHorizontal"
-    android:paddingStart="?attr/listItemMarginHorizontal" >
+    android:paddingRight="?attr/listPreferredItemPaddingRight"
+    android:paddingLeft="?attr/listPreferredItemPaddingLeft" >
 
     <TextView
         android:id="@android:id/text1"

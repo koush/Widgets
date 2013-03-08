@@ -6,8 +6,12 @@
         res/values-v11/styles.xml on API 14+ devices.
     -->
     <style name="AppBaseLargeTheme" parent="AndroidTheme">
+        <item name="listPreferredItemPaddingLeft">?android:attr/listPreferredItemPaddingLeft</item>
+        <item name="listPreferredItemPaddingRight">?android:attr/listPreferredItemPaddingRight</item>
     </style>
 
     <style name="AppBaseDarkLargeTheme" parent="AndroidDarkTheme">
+        <item name="listPreferredItemPaddingLeft">?android:attr/listPreferredItemPaddingLeft</item>
+        <item name="listPreferredItemPaddingRight">?android:attr/listPreferredItemPaddingRight</item>
     </style>
 </resources>

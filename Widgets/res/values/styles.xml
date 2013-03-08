@@ -15,6 +15,8 @@
         -->
         <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
         <item name="listHeaderTextColor">@color/holo_blue_dark</item>
+        <item name="listPreferredItemPaddingLeft">6dp</item>
+        <item name="listPreferredItemPaddingRight">6dp</item>
     </style>
 
     <!-- Application theme. -->
@@ -27,8 +29,7 @@
         <item name="listItemSelectableLargeBackground">@null</item>
         <item name="listItemSelectableLargeIndicatorStyle">?android:attr/activatedBackgroundIndicator</item>
         <item name="iconSize">24dp</item>
-        <item name="listItemMarginHorizontal">?android:attr/listPreferredItemPaddingStart</item>
-    
+        
     </style>
 
     <style name="ListContentIndicator">
@@ -38,6 +39,8 @@
     <style name="AppBaseDarkTheme" parent="AndroidDarkTheme">
         <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
         <item name="listHeaderTextColor">@null</item>
+        <item name="listPreferredItemPaddingLeft">6dp</item>
+        <item name="listPreferredItemPaddingRight">6dp</item>
     </style>
 
     <!-- Application theme. -->
@@ -50,7 +53,6 @@
         <item name="listItemSelectableLargeBackground">?android:attr/activatedBackgroundIndicator</item>
         <item name="listItemSelectableLargeIndicatorStyle">@style/ListContentIndicator</item>
         <item name="iconSize">24dp</item>
-        <item name="listItemMarginHorizontal">?android:attr/listPreferredItemPaddingStart</item>
         
     </style>
     
@@ -61,11 +63,13 @@
     </style>
     
     <style name="AppActivityTheme" parent="AppActivityBaseTheme">
-        <item name="listItemMarginHorizontal">@dimen/activity_horizontal_margin</item>
+        <item name="listPreferredItemPaddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="listPreferredItemPaddingRight">@dimen/activity_horizontal_margin</item>
     </style>
     
     <style name="AppDarkActivityTheme" parent="AppDarkActivityBaseTheme">
-        <item name="listItemMarginHorizontal">@dimen/activity_horizontal_margin</item>
+        <item name="listPreferredItemPaddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="listPreferredItemPaddingRight">@dimen/activity_horizontal_margin</item>
     </style>
     
     <style name="ListItemTitle" >
