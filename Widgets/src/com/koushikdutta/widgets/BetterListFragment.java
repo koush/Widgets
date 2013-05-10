@@ -68,7 +68,7 @@ public class BetterListFragment extends SupportFragment<BetterListFragmentIntern
     }
 
     public ListItemAdapter ensureHeader(int index, int sectionName) {
-        return getInternal().ensureHeader(sectionName);
+        return getInternal().ensureHeader(index, sectionName);
     }
     public ListItemAdapter ensureHeader(int index, String sectionName) {
         return getInternal().ensureHeader(index, sectionName);
