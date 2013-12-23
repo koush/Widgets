@@ -51,7 +51,7 @@ public class ListContentFragment extends BetterListFragment {
         mContainer = (ViewGroup)ret.findViewById(R.id.list_content_container);
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        
+
         super.onCreate(savedInstanceState, ret);
     }
     
@@ -102,6 +102,7 @@ public class ListContentFragment extends BetterListFragment {
         final FragmentManager fm = fa.getSupportFragmentManager();
         FragmentTransaction ft = fa.getSupportFragmentManager().beginTransaction();
         if (isPaged()) {
+            ft.setCustomAnimations(R.anim.enter, R.anim.exit);
             View v = getView();
             Assert.assertNotNull(v);
             final View l = v.findViewById(R.id.list_fragment);

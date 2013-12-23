@@ -79,10 +79,6 @@ public class BetterListActivity extends FragmentActivity implements ActivityBase
     protected ListItem addItem(String sectionName, ListItem item) {
         return fragment.addItem(sectionName, item, -1);
     }
-    
-    public void setEmpty(int res) {
-        fragment.setEmpty(res);
-    }
 
     public boolean isDestroyedLegacy() {
         return mDestroyed;

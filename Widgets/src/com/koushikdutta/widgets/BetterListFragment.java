@@ -252,8 +252,6 @@ public class BetterListFragment extends Fragment {
     }
 
     ViewGroup mTitleContainer;
-    TextView mEmpty;
-
 
     protected int getListHeaderResource() {
         return R.layout.list_header;
@@ -292,11 +290,6 @@ public class BetterListFragment extends Fragment {
             adapter.remove(item);
         }
         mAdapter.notifyDataSetChanged();
-    }
-
-    public void setEmpty(int res) {
-        mListView.setEmptyView(mEmpty);
-        mEmpty.setText(res);
     }
 
     public ListView getListView() {
@@ -351,7 +344,7 @@ public class BetterListFragment extends Fragment {
             }
         });
 
-        mEmpty = (TextView)ret.findViewById(R.id.empty);
+        mListView.setEmptyView(ret.findViewById(R.id.empty));
 
         onCreate(savedInstanceState, ret);
         mListView.setAdapter(mAdapter);
