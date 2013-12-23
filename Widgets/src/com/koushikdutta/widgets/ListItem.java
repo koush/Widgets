@@ -19,7 +19,6 @@ package com.koushikdutta.widgets;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -30,7 +29,7 @@ import android.widget.TextView;
 public class ListItem {
     private String Title;
     private String Summary;
-    private BetterListFragmentInternal mFragment;
+    private BetterListFragment mFragment;
     private boolean Enabled = true;
 
     private int Icon;
@@ -97,7 +96,7 @@ public class ListItem {
         return this;
     }
     
-    public ListItem(BetterListFragmentInternal context, int title, int summary) {
+    public ListItem(BetterListFragment context, int title, int summary) {
         if (title != 0)
             Title = context.getString(title);
         if (summary != 0)
@@ -105,24 +104,24 @@ public class ListItem {
         mFragment = context;
     }
     
-    public ListItem(BetterListFragmentInternal context, String title, String summary) {
+    public ListItem(BetterListFragment context, String title, String summary) {
         Title = title;
         Summary = summary;
         mFragment = context;
     }
     
-    public ListItem(BetterListFragmentInternal context, int title, int summary, int icon) {
+    public ListItem(BetterListFragment context, int title, int summary, int icon) {
         this(context, title, summary);
         Icon = icon;
     }
     
-    public ListItem(BetterListFragmentInternal context, String title, String summary, int icon) {
+    public ListItem(BetterListFragment context, String title, String summary, int icon) {
         this(context, title, summary);
         Icon = icon;
     }
     
     Drawable mDrawable;
-    public ListItem(BetterListFragmentInternal context, String title, String summary, Drawable drawable) {
+    public ListItem(BetterListFragment context, String title, String summary, Drawable drawable) {
         this(context, title, summary);
         mDrawable = drawable;
     }

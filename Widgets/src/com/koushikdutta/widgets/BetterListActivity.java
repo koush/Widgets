@@ -20,7 +20,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
-import com.koushikdutta.widgets.BetterListFragmentInternal.ActivityBaseFragmentListener;
+import com.koushikdutta.widgets.BetterListFragment.ActivityBaseFragmentListener;
 
 
 
@@ -35,15 +35,7 @@ public class BetterListActivity extends FragmentActivity implements ActivityBase
         super();
         this.clazz = BetterListFragment.class;
     }
-    
-    public BetterListFragmentInternal getFragment() {
-        return fragment.getInternal();        
-    }
-    
-    public View getView() {
-        return fragment.getView();
-    }
-    
+
     protected int getListContainerId() {
         return R.id.activity_content;
     }
@@ -51,7 +43,7 @@ public class BetterListActivity extends FragmentActivity implements ActivityBase
     protected int getContentView() {
         return R.layout.container_activity;
     }
-    
+
     BetterListFragment fragment;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +55,7 @@ public class BetterListActivity extends FragmentActivity implements ActivityBase
         try {
             fragment = (BetterListFragment)clazz.getConstructors()[0].newInstance();
             fragment.setArguments(getIntent().getExtras());
-            fragment.getInternal().setListener(this);
+            fragment.setListener(this);
             getSupportFragmentManager().beginTransaction().replace(getListContainerId(), fragment, "betterlist").commit();
         }
         catch (Exception e) {
@@ -74,22 +66,22 @@ public class BetterListActivity extends FragmentActivity implements ActivityBase
     @Override
     public void onCreate(Bundle savedInstanceState, View view) {
     }
-    
+
 
     protected ListItem addItem(int sectionName, ListItem item) {
-        return getFragment().addItem(getString(sectionName), item);
+        return fragment.addItem(getString(sectionName), item);
     }
 
     protected ListItem addItem(int sectionName, ListItem item, int index) {
-        return getFragment().addItem(getString(sectionName), item, index);
+        return fragment.addItem(getString(sectionName), item, index);
     }
     
     protected ListItem addItem(String sectionName, ListItem item) {
-        return getFragment().addItem(sectionName, item, -1);
+        return fragment.addItem(sectionName, item, -1);
     }
     
     public void setEmpty(int res) {
-        getFragment().setEmpty(res);
+        fragment.setEmpty(res);
     }
 
     public boolean isDestroyedLegacy() {
