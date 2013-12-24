@@ -18,13 +18,10 @@ package com.koushikdutta.widgets;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.View;
-
-import com.koushikdutta.widgets.BetterListFragment.ActivityBaseFragmentListener;
 
 
 
-public class BetterListActivity extends FragmentActivity implements ActivityBaseFragmentListener {
+public class BetterListActivity extends FragmentActivity {
     Class<? extends BetterListFragment> clazz;
     public BetterListActivity(Class<? extends BetterListFragment> clazz) {
         super();
@@ -51,22 +48,18 @@ public class BetterListActivity extends FragmentActivity implements ActivityBase
         int cv = getContentView();
         if (0 != cv)
             setContentView(cv);
-        
-        try {
-            fragment = (BetterListFragment)clazz.getConstructors()[0].newInstance();
-            fragment.setArguments(getIntent().getExtras());
-            fragment.setListener(this);
-            getSupportFragmentManager().beginTransaction().replace(getListContainerId(), fragment, "betterlist").commit();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
+
+        if (savedInstanceState == null) {
+            try {
+                fragment = (BetterListFragment)clazz.getConstructors()[0].newInstance();
+                fragment.setArguments(getIntent().getExtras());
+                getSupportFragmentManager().beginTransaction().replace(getListContainerId(), fragment, "betterlist").commit();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState, View view) {
-    }
-
 
     protected ListItem addItem(int sectionName, ListItem item) {
         return fragment.addItem(getString(sectionName), item);
