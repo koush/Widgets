@@ -18,10 +18,10 @@ package com.koushikdutta.widgets;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 
 
-
-public class BetterListActivity extends FragmentActivity {
+public class BetterListActivity extends FragmentActivity implements BetterListFragment.ActivityBaseFragmentListener {
     Class<? extends BetterListFragment> clazz;
     public BetterListActivity(Class<? extends BetterListFragment> clazz) {
         super();
@@ -41,6 +41,10 @@ public class BetterListActivity extends FragmentActivity {
         return R.layout.container_activity;
     }
 
+    public BetterListFragment getFragment() {
+        return fragment;
+    }
+
     BetterListFragment fragment;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,7 @@ public class BetterListActivity extends FragmentActivity {
         if (savedInstanceState == null) {
             try {
                 fragment = (BetterListFragment)clazz.getConstructors()[0].newInstance();
+                fragment.setListener(this);
                 fragment.setArguments(getIntent().getExtras());
                 getSupportFragmentManager().beginTransaction().replace(getListContainerId(), fragment, "betterlist").commit();
             }
@@ -59,6 +64,10 @@ public class BetterListActivity extends FragmentActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState, View view) {
     }
 
     protected ListItem addItem(int sectionName, ListItem item) {

@@ -61,7 +61,7 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
         this.sections.remove(section);
         notifyDataSetChanged();
     }
-    
+
     public T getSection(String section) {
         return sections.get(section);
     }

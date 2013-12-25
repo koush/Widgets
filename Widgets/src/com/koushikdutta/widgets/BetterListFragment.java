@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -67,8 +68,25 @@ public class BetterListFragment extends Fragment {
     }
     
     public class ListItemAdapter extends ArrayAdapter<ListItem> {
-        public ListItemAdapter(Context context) {
+        String name;
+        public ListItemAdapter(Context context, String name) {
             super(context, 0);
+            this.name = name;
+        }
+
+        private Filter filter;
+        @Override
+        public Filter getFilter() {
+            return filter;
+        }
+
+        public void setFilter(Filter filter) {
+            this.filter = filter;
+            notifyDataSetChanged();
+        }
+
+        public String getName() {
+            return name;
         }
         
         @Override
@@ -150,7 +168,7 @@ public class BetterListFragment extends Fragment {
     public ListItemAdapter ensureHeader(int index, String sectionName) {
         ListItemAdapter adapter = mAdapter.getSection(sectionName);
         if (adapter == null) {
-            adapter = new ListItemAdapter(getContext());
+            adapter = new ListItemAdapter(getContext(), sectionName);
             mAdapter.addSection(index, sectionName, adapter);
             mListView.setAdapter(null);
             mListView.setAdapter(mAdapter);
@@ -192,7 +210,7 @@ public class BetterListFragment extends Fragment {
     public ListItem addItem(String sectionName, ListItem item, int index) {
         ListItemAdapter adapter = mAdapter.getSection(sectionName);
         if (adapter == null) {
-            adapter = new ListItemAdapter(getContext());
+            adapter = new ListItemAdapter(getContext(), sectionName);
             mAdapter.addSection(sectionName, adapter);
             if (mListView != null) {
                 mListView.setAdapter(null);
@@ -225,7 +243,19 @@ public class BetterListFragment extends Fragment {
         return null;
     }
 
+    private ActivityBaseFragmentListener mListener;
+    public ActivityBaseFragmentListener getListener() {
+        return mListener;
+    }
+    public void setListener(ActivityBaseFragmentListener listener) {
+        mListener = listener;
+    }
+    public static interface ActivityBaseFragmentListener {
+        void onCreate(Bundle savedInstanceState, View view);
+    }
     protected void onCreate(Bundle savedInstanceState, View view) {
+        if (mListener != null)
+            mListener.onCreate(savedInstanceState, view);
     }
 
     protected int getListFragmentResource() {
