@@ -46,6 +46,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/content"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"

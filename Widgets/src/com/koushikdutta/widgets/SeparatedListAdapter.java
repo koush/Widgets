@@ -19,6 +19,7 @@ package com.koushikdutta.widgets;
 import java.util.HashMap;
 
 import android.content.Context;
+import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -31,7 +32,7 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
         headers.clear();
         notifyDataSetChanged();
     }
-    
+
     protected int getListHeaderResource() {
         return R.layout.list_header;
     }
@@ -89,6 +90,7 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
         return null;
     }
 
+    @Override
     public int getCount() {
         // total together all sections, plus one for each section header
         int total = 0;

@@ -277,7 +277,8 @@ public class BetterListFragment extends Fragment {
     }
 
     public void clear() {
-        mAdapter.clear();
+        if (mAdapter != null)
+            mAdapter.clear();
     }
 
     public void clearSection(int section) {
