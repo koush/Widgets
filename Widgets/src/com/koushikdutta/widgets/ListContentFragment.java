@@ -43,6 +43,10 @@ public class ListContentFragment extends BetterListFragment {
         mContainer = (ViewGroup)ret.findViewById(R.id.list_content_container);
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        if (!isPaged()) {
+            if (getFragmentManager().findFragmentByTag("content") != null)
+                ret.findViewById(R.id.content).setVisibility(View.VISIBLE);
+        }
 
         super.onCreate(savedInstanceState, ret);
     }
@@ -67,6 +71,10 @@ public class ListContentFragment extends BetterListFragment {
             ft.setBreadCrumbTitle(breadcrumb);
             ft.setBreadCrumbShortTitle(breadcrumb);
             ft.addToBackStack("content");
+        }
+        else {
+            if (getView() != null)
+                getView().findViewById(R.id.content).setVisibility(View.VISIBLE);
         }
         Fragment c = fm.findFragmentByTag("content");
         if (c != null)
