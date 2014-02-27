@@ -16,10 +16,8 @@
 
 package com.koushikdutta.widgets;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -45,18 +43,10 @@ public class ListContentFragment extends BetterListFragment {
         mContainer = (ViewGroup)ret.findViewById(R.id.list_content_container);
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        if (!isPaged()) {
-            if (getFragmentManager().findFragmentByTag("content") != null)
-                ret.findViewById(R.id.content).setVisibility(View.VISIBLE);
-        }
 
         super.onCreate(savedInstanceState, ret);
     }
 
-    public static boolean isPaged(Activity activity) {
-        return activity.findViewById(R.id.content) == null;
-    }
-    
     public boolean isPaged() {
         return mContent == null;
     }
@@ -68,9 +58,8 @@ public class ListContentFragment extends BetterListFragment {
     }
 
     public void setContent(Fragment content, boolean clearChoices, CharSequence breadcrumb) {
-        FragmentActivity fa = (FragmentActivity)getActivity();
-        final FragmentManager fm = fa.getSupportFragmentManager();
-        FragmentTransaction ft = fa.getSupportFragmentManager().beginTransaction();
+        final FragmentManager fm = getChildFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
         if (isPaged()) {
             ft.setCustomAnimations(R.anim.enter, R.anim.exit);
             ft.remove(this);
@@ -79,11 +68,10 @@ public class ListContentFragment extends BetterListFragment {
             ft.setBreadCrumbShortTitle(breadcrumb);
             ft.addToBackStack("content");
         }
-        else {
-            if (getView() != null)
-                getView().findViewById(R.id.content).setVisibility(View.VISIBLE);
-        }
-        ft.replace(getContentId(), content, "content");
+        Fragment c = fm.findFragmentByTag("content");
+        if (c != null)
+            ft.remove(c);
+        ft.add(getContentId(), content, "content");
         int transition = getView() == null ? FragmentTransaction.TRANSIT_NONE : FragmentTransaction.TRANSIT_FRAGMENT_FADE;
         ft.setTransition(transition);
         ft.commit();
