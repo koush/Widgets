@@ -19,6 +19,7 @@ package com.koushikdutta.widgets;
 import java.util.HashMap;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,39 +28,65 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 
 public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
+    private final static int TYPE_SECTION_HEADER = 0;
+    private final HashMap<String, T> sections = new HashMap<String, T>();
+    private final ArrayAdapter<String> headers;
+    private boolean hideEmptySections;
+    private DataSetObserver observer = new DataSetObserver() {
+        @Override
+        public void onChanged() {
+            super.onChanged();
+            SeparatedListAdapter.this.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onInvalidated() {
+            super.onInvalidated();
+            SeparatedListAdapter.this.notifyDataSetInvalidated();
+        }
+    };
+
+    public SeparatedListAdapter(Context context) {
+        headers = new ArrayAdapter<String>(context, getListHeaderResource(), android.R.id.text1);
+    }
+
     public void clear() {
         sections.clear();
         headers.clear();
         notifyDataSetChanged();
     }
 
-    protected int getListHeaderResource() {
-        return R.layout.list_header;
+    public boolean getHideEmptySections() {
+        return hideEmptySections;
     }
 
-    private final HashMap<String, T> sections = new HashMap<String, T>();
-    private final ArrayAdapter<String> headers;
-    private final static int TYPE_SECTION_HEADER = 0;
+    public void setHideEmptySections(boolean hideEmptySections) {
+        this.hideEmptySections = hideEmptySections;
+    }
 
-    public SeparatedListAdapter(Context context) {
-        headers = new ArrayAdapter<String>(context, getListHeaderResource(), android.R.id.text1);
+    protected int getListHeaderResource() {
+        return R.layout.list_header;
     }
 
     public void addSection(String section, T adapter) {
         this.headers.add(section);
         this.sections.put(section, adapter);
+        adapter.registerDataSetObserver(observer);
         notifyDataSetChanged();
     }
 
     public void addSection(int index, String section, T adapter) {
         this.headers.insert(section, index);
         this.sections.put(section, adapter);
+        adapter.registerDataSetObserver(observer);
         notifyDataSetChanged();
     }
     
     public void removeSection(String section) {
         this.headers.remove(section);
-        this.sections.remove(section);
+        T adapter = this.sections.remove(section);
+        if (adapter != null)
+            adapter.unregisterDataSetObserver(observer);
         notifyDataSetChanged();
     }
 
@@ -71,12 +98,32 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
         return sections.values();
     }
 
+    public Adapter getItemAdapter(int position) {
+        for (int i = 0; i < headers.getCount(); i++) {
+            String section = headers.getItem(i);
+            Adapter adapter = sections.get(section);
+            int size = adapter.getCount() + 1;
+            if (size == 1 && hideEmptySections)
+                continue;
+
+            // check if position inside this section
+            if (position < size)
+                return adapter;
+
+            // otherwise jump into next section
+            position -= size;
+        }
+        return null;
+    }
+
     @Override
     public Object getItem(int position) {
         for (int i = 0; i < headers.getCount(); i++) {
             String section = headers.getItem(i);
             Adapter adapter = sections.get(section);
             int size = adapter.getCount() + 1;
+            if (size == 1 && hideEmptySections)
+                continue;
 
             // check if position inside this section
             if (position == 0)
@@ -94,8 +141,12 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
     public int getCount() {
         // total together all sections, plus one for each section header
         int total = 0;
-        for (Adapter adapter : this.sections.values())
-            total += adapter.getCount() + 1;
+        for (Adapter adapter : this.sections.values()) {
+            int size = adapter.getCount() + 1;
+            if (size == 1 && hideEmptySections)
+                continue;
+            total += size;
+        }
         return total;
     }
 
@@ -120,6 +171,8 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
             String section = headers.getItem(i);
             Adapter adapter = sections.get(section);
             int size = adapter.getCount() + 1;
+            if (size == 1 && hideEmptySections)
+                continue;
 
             // check if position inside this section
             if (position == 0)
@@ -141,21 +194,21 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        int sectionnum = 0;
         for (int i = 0; i < headers.getCount(); i++) {
             String section = headers.getItem(i);
             Adapter adapter = sections.get(section);
             int size = adapter.getCount() + 1;
+            if (size == 1 && hideEmptySections)
+                continue;
 
             // check if position inside this section
             if (position == 0)
-                return headers.getView(sectionnum, convertView, parent);
+                return headers.getView(i, convertView, parent);
             if (position < size)
                 return adapter.getView(position - 1, convertView, parent);
 
             // otherwise jump into next section
             position -= size;
-            sectionnum++;
         }
         return null;
     }

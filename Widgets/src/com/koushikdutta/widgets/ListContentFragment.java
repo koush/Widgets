@@ -77,8 +77,11 @@ public class ListContentFragment extends BetterListFragment {
                 getView().findViewById(R.id.content).setVisibility(View.VISIBLE);
         }
         Fragment c = fm.findFragmentByTag("content");
-        if (c != null)
+        if (c != null) {
+            if (!isPaged())
+                ft.addToBackStack("content");
             ft.remove(c);
+        }
         ft.add(getContentId(), content, "content");
         int transition = getView() == null ? FragmentTransaction.TRANSIT_NONE : FragmentTransaction.TRANSIT_FRAGMENT_FADE;
         ft.setTransition(transition);

@@ -42,10 +42,9 @@ public class BetterListActivity extends FragmentActivity implements BetterListFr
     }
 
     public BetterListFragment getFragment() {
-        return fragment;
+        return (BetterListFragment)getSupportFragmentManager().findFragmentByTag("betterlist");
     }
 
-    BetterListFragment fragment;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
@@ -55,7 +54,7 @@ public class BetterListActivity extends FragmentActivity implements BetterListFr
 
         if (savedInstanceState == null) {
             try {
-                fragment = (BetterListFragment)clazz.getConstructors()[0].newInstance();
+                BetterListFragment fragment = (BetterListFragment)clazz.getConstructors()[0].newInstance();
                 fragment.setListener(this);
                 fragment.setArguments(getIntent().getExtras());
                 getSupportFragmentManager().beginTransaction().replace(getListContainerId(), fragment, "betterlist").commit();
@@ -64,6 +63,11 @@ public class BetterListActivity extends FragmentActivity implements BetterListFr
                 e.printStackTrace();
             }
         }
+        else {
+            BetterListFragment fragment = getFragment();
+            if (fragment != null)
+                fragment.setListener(this);
+        }
     }
 
     @Override
@@ -71,15 +75,15 @@ public class BetterListActivity extends FragmentActivity implements BetterListFr
     }
 
     protected ListItem addItem(int sectionName, ListItem item) {
-        return fragment.addItem(getString(sectionName), item);
+        return getFragment().addItem(getString(sectionName), item);
     }
 
     protected ListItem addItem(int sectionName, ListItem item, int index) {
-        return fragment.addItem(getString(sectionName), item, index);
+        return getFragment().addItem(getString(sectionName), item, index);
     }
     
     protected ListItem addItem(String sectionName, ListItem item) {
-        return fragment.addItem(sectionName, item, -1);
+        return getFragment().addItem(sectionName, item, -1);
     }
 
     public boolean isDestroyedLegacy() {
