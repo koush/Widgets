@@ -61,7 +61,15 @@ public class ListContentFragment extends BetterListFragment {
         return R.id.content;
     }
 
-    public void setContent(Fragment content, boolean clearChoices, CharSequence breadcrumb) {
+    public static interface FragmentTransactionCallback {
+        void beforeTransaction(FragmentTransaction ft);
+    }
+
+    public void setContent(Fragment content, boolean clearChoices, String breadcrumb) {
+        setContent(content, clearChoices, breadcrumb, null);
+    }
+
+    public void setContent(Fragment content, boolean clearChoices, String breadcrumb, FragmentTransactionCallback callback) {
         final FragmentManager fm = getChildFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         if (isPaged()) {
@@ -70,7 +78,7 @@ public class ListContentFragment extends BetterListFragment {
             fm.popBackStack("content", FragmentManager.POP_BACK_STACK_INCLUSIVE);
             ft.setBreadCrumbTitle(breadcrumb);
             ft.setBreadCrumbShortTitle(breadcrumb);
-            ft.addToBackStack("content");
+            ft.addToBackStack(breadcrumb);
         }
         else {
             if (getView() != null)
@@ -79,12 +87,14 @@ public class ListContentFragment extends BetterListFragment {
         Fragment c = fm.findFragmentByTag("content");
         if (c != null) {
             if (!isPaged())
-                ft.addToBackStack("content");
-            ft.remove(c);
+                ft.addToBackStack(breadcrumb);
+//            ft.remove(c);
         }
-        ft.add(getContentId(), content, "content");
         int transition = getView() == null ? FragmentTransaction.TRANSIT_NONE : FragmentTransaction.TRANSIT_FRAGMENT_FADE;
         ft.setTransition(transition);
+        if (callback != null)
+            callback.beforeTransaction(ft);
+        ft.replace(getContentId(), content, "content");
         ft.commit();
 
         if (clearChoices)
