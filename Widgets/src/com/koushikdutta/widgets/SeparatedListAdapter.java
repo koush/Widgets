@@ -16,72 +16,125 @@
 
 package com.koushikdutta.widgets;
 
-import java.util.HashMap;
-
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 
-public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
-    public void clear() {
-        sections.clear();
-        headers.clear();
-        notifyDataSetChanged();
-    }
-    
-    protected int getListHeaderResource() {
-        return R.layout.list_header;
-    }
+import java.util.HashMap;
+import java.util.HashSet;
 
+public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
+    private final static int TYPE_SECTION_HEADER = 0;
     private final HashMap<String, T> sections = new HashMap<String, T>();
     private final ArrayAdapter<String> headers;
-    private final static int TYPE_SECTION_HEADER = 0;
+    private boolean hideEmpty;
+    private HashSet<String> hiddenSections = new HashSet<String>();
+
+    private boolean isSectionHeaderHidden(String section, T adapter) {
+        return hiddenSections.contains(section) || (hideEmpty && adapter.getCount() == 0);
+    }
+
+    private DataSetObserver observer = new DataSetObserver() {
+        @Override
+        public void onChanged() {
+            super.onChanged();
+            SeparatedListAdapter.this.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onInvalidated() {
+            super.onInvalidated();
+            SeparatedListAdapter.this.notifyDataSetInvalidated();
+        }
+    };
+
+    public void hideSectionHeader(String section) {
+        hiddenSections.add(section);
+    }
 
     public SeparatedListAdapter(Context context) {
         headers = new ArrayAdapter<String>(context, getListHeaderResource(), android.R.id.text1);
     }
 
+    public void clear() {
+        sections.clear();
+        headers.clear();
+        notifyDataSetChanged();
+    }
+
+    public boolean getHideEmptySections() {
+        return hideEmpty;
+    }
+
+    public void setHideEmptySections(boolean hideEmptySections) {
+        this.hideEmpty = hideEmptySections;
+    }
+
+    protected int getListHeaderResource() {
+        return R.layout.list_header;
+    }
+
     public void addSection(String section, T adapter) {
         this.headers.add(section);
         this.sections.put(section, adapter);
+        adapter.registerDataSetObserver(observer);
         notifyDataSetChanged();
     }
 
     public void addSection(int index, String section, T adapter) {
         this.headers.insert(section, index);
         this.sections.put(section, adapter);
+        adapter.registerDataSetObserver(observer);
         notifyDataSetChanged();
     }
-    
+
     public void removeSection(String section) {
         this.headers.remove(section);
-        this.sections.remove(section);
+        T adapter = this.sections.remove(section);
+        if (adapter != null)
+            adapter.unregisterDataSetObserver(observer);
         notifyDataSetChanged();
     }
-    
+
     public T getSection(String section) {
         return sections.get(section);
     }
-    
+
     public Iterable<T> getSections() {
         return sections.values();
     }
 
-    @Override
-    public Object getItem(int position) {
+    private class ItemAdapterInfo {
+        String section;
+        T adapter;
+        int adapterPosition;
+        int position;
+    }
+
+    private ItemAdapterInfo getItemAdapterInfo(int position) {
         for (int i = 0; i < headers.getCount(); i++) {
             String section = headers.getItem(i);
-            Adapter adapter = sections.get(section);
-            int size = adapter.getCount() + 1;
+            T adapter = sections.get(section);
+            int size = adapter.getCount();
+            boolean sectionHidden = isSectionHeaderHidden(section, adapter);
+            if (!sectionHidden)
+                size++;
 
             // check if position inside this section
-            if (position == 0)
-                return section;
-            if (position < size)
-                return adapter.getItem(position - 1);
+            if (position < size) {
+                ItemAdapterInfo info = new ItemAdapterInfo();
+                info.adapter = adapter;
+                info.position = position;
+                if (sectionHidden)
+                    info.position++;
+                info.adapterPosition = i;
+                info.section = section;
+                return info;
+            }
 
             // otherwise jump into next section
             position -= size;
@@ -89,18 +142,41 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
         return null;
     }
 
+    public Adapter getItemAdapter(int position) {
+        ItemAdapterInfo info = getItemAdapterInfo(position);
+        if (info == null)
+            return null;
+        return info.adapter;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        ItemAdapterInfo info = getItemAdapterInfo(position);
+        if (info == null)
+            return null;
+        if (info.position == 0)
+            return info.section;
+        return info.adapter.getItem(info.position - 1);
+    }
+
+    @Override
     public int getCount() {
         // total together all sections, plus one for each section header
         int total = 0;
-        for (Adapter adapter : this.sections.values())
-            total += adapter.getCount() + 1;
+        for (int i = 0; i < headers.getCount(); i++) {
+            String section = headers.getItem(i);
+            T adapter = sections.get(section);
+            total += adapter.getCount();
+            if (!isSectionHeaderHidden(section, adapter))
+                total++;
+        }
         return total;
     }
 
     public int getSectionCount() {
         return headers.getCount();
     }
-    
+
     @Override
     public int getViewTypeCount() {
         // assume that headers count as one, and that there will be at least a itemViewType.
@@ -113,23 +189,12 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        int type = 1;
-        for (int i = 0; i < headers.getCount(); i++) {
-            String section = headers.getItem(i);
-            Adapter adapter = sections.get(section);
-            int size = adapter.getCount() + 1;
-
-            // check if position inside this section
-            if (position == 0)
-                return TYPE_SECTION_HEADER;
-            if (position < size)
-                return type + adapter.getItemViewType(position - 1);
-
-            // otherwise jump into next section
-            position -= size;
-            type += adapter.getViewTypeCount();
-        }
-        return -1;
+        ItemAdapterInfo info = getItemAdapterInfo(position);
+        if (info == null)
+            return -1;
+        if (info.position == 0)
+            return TYPE_SECTION_HEADER;
+        return 1 + info.adapterPosition + info.adapter.getItemViewType(info.position - 1);
     }
 
     @Override
@@ -139,23 +204,12 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        int sectionnum = 0;
-        for (int i = 0; i < headers.getCount(); i++) {
-            String section = headers.getItem(i);
-            Adapter adapter = sections.get(section);
-            int size = adapter.getCount() + 1;
-
-            // check if position inside this section
-            if (position == 0)
-                return headers.getView(sectionnum, convertView, parent);
-            if (position < size)
-                return adapter.getView(position - 1, convertView, parent);
-
-            // otherwise jump into next section
-            position -= size;
-            sectionnum++;
-        }
-        return null;
+        ItemAdapterInfo info = getItemAdapterInfo(position);
+        if (info == null)
+            return null;
+        if (info.position == 0)
+            return headers.getView(info.adapterPosition, convertView, parent);
+        return info.adapter.getView(info.position - 1, convertView, parent);
     }
 
     @Override

@@ -39,18 +39,14 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent" />
 
-                <TextView
-                    android:id="@+id/empty"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:textAppearance="@android:style/TextAppearance.Medium"
-                    android:visibility="gone" />
+                <FrameLayout
+                        android:id="@+id/empty"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" />
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/content"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
