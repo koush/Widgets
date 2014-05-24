@@ -29,7 +29,6 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.Comparator;
 
@@ -338,7 +337,7 @@ public class BetterListFragment extends Fragment {
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                Object item = mAdapter.getItem(arg2);
+                Object item = mAdapter.getItem(arg2 - mListView.getHeaderViewsCount());
                 if (item instanceof ListItem) {
                     ListItem li = (ListItem)item;
                     onListItemClick(li);
@@ -351,7 +350,7 @@ public class BetterListFragment extends Fragment {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                Object item = mAdapter.getItem(arg2);
+                Object item = mAdapter.getItem(arg2 - mListView.getHeaderViewsCount());
                 if (item instanceof ListItem) {
                     ListItem li = (ListItem)item;
                     return li.onLongClick();

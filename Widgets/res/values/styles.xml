@@ -74,10 +74,9 @@
     
     <style name="ListItemTitle" >
         <item name="android:textSize">18sp</item>
-        
     </style>
+
     <style name="ListItemSummary" >
         <item name="android:textSize">12sp</item>
-        
     </style>
 </resources>
