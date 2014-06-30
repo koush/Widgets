@@ -8,4 +8,6 @@
     <color name="holo_red_dark">#ffcc0000</color>
     
     <color name="list_separator">#f1f1f1</color>
+
+    <color name="notification_color_mask">#FFFFFFFF</color>
 </resources>

@@ -79,4 +79,10 @@
     <style name="ListItemSummary" >
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="NotificationTitle" parent="@android:style/TextAppearance.Medium">
+    </style>
+
+    <style name="NotificationLine2">
+    </style>
 </resources>
