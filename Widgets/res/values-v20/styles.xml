@@ -1,0 +1,34 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AndroidTheme" parent="@android:style/Theme.Material.Light" />
+    <style name="AndroidDarkTheme" parent="@android:style/Theme.Material" />
+    
+    <!--
+        Base application theme for API 14+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v11/styles.xml on API 14+ devices.
+    -->
+    <style name="AppBaseTheme" parent="AndroidTheme">
+        <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
+        <item name="listHeaderTextColor">@color/holo_blue_dark</item>
+        <item name="listPreferredItemPaddingLeft">?android:attr/listPreferredItemPaddingLeft</item>
+        <item name="listPreferredItemPaddingRight">?android:attr/listPreferredItemPaddingRight</item>
+        
+    </style>
+
+    <style name="AppBaseDarkTheme" parent="AndroidDarkTheme">
+        <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
+        <item name="listHeaderTextColor">@null</item>
+        <item name="listPreferredItemPaddingLeft">?android:attr/listPreferredItemPaddingLeft</item>
+        <item name="listPreferredItemPaddingRight">?android:attr/listPreferredItemPaddingRight</item>
+        
+    </style>
+
+    <style name="ListItemTitle" parent="@android:style/TextAppearance.Medium" >
+
+    </style>
+
+    <style name="ListItemSummary" parent="@android:style/TextAppearance.Small" >
+
+    </style>
+</resources>

@@ -66,10 +66,6 @@ public class ListContentFragment extends BetterListFragment {
     }
 
     public void setContent(Fragment content, boolean clearChoices, String breadcrumb) {
-        setContent(content, clearChoices, breadcrumb, null);
-    }
-
-    public void setContent(Fragment content, boolean clearChoices, String breadcrumb, FragmentTransactionCallback callback) {
         final FragmentManager fm = getChildFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         if (isPaged()) {
@@ -92,8 +88,6 @@ public class ListContentFragment extends BetterListFragment {
         }
         int transition = getView() == null ? FragmentTransaction.TRANSIT_NONE : FragmentTransaction.TRANSIT_FRAGMENT_FADE;
         ft.setTransition(transition);
-        if (callback != null)
-            callback.beforeTransaction(ft);
         ft.replace(getContentId(), content, "content");
         ft.commit();
 
