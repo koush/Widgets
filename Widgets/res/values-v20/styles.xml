@@ -1,6 +1,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AndroidTheme" parent="@android:style/Theme.Material.Light" />
+    <style name="AndroidTheme" parent="@android:style/Theme.Material.Light.DarkActionBar" />
     <style name="AndroidDarkTheme" parent="@android:style/Theme.Material" />
     
     <!--
@@ -20,7 +20,6 @@
         <item name="listHeaderTextColor">@null</item>
         <item name="listPreferredItemPaddingLeft">?android:attr/listPreferredItemPaddingLeft</item>
         <item name="listPreferredItemPaddingRight">?android:attr/listPreferredItemPaddingRight</item>
-        
     </style>
 
     <style name="ListItemTitle" parent="@android:style/TextAppearance.Medium" >
