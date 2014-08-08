@@ -1,23 +1,7 @@
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.6'
-}
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:0.12.+'
-    }
-}
 apply plugin: 'com.android.library'
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    compile 'com.android.support:support-v4:20.+'
+    compile 'com.android.support:support-v4:+'
 }
 
 android {
@@ -29,12 +13,12 @@ android {
         }
     }
 
-    compileSdkVersion "android-L"
+    compileSdkVersion 'android-L'
     buildToolsVersion "20.0.0"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 'android-L'
     }
 }
 

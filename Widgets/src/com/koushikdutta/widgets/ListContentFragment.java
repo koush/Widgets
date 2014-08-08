@@ -61,12 +61,12 @@ public class ListContentFragment extends BetterListFragment {
         return R.id.content;
     }
 
-    public static interface FragmentTransactionCallback {
-        void beforeTransaction(FragmentTransaction ft);
-    }
-
     public void setContent(Fragment content, boolean clearChoices, String breadcrumb) {
-        final FragmentManager fm = getChildFragmentManager();
+        final FragmentManager fm;
+        if (isPaged())
+            fm = getFragmentManager();
+        else
+            fm = getChildFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         if (isPaged()) {
             ft.setCustomAnimations(R.anim.enter, R.anim.exit);

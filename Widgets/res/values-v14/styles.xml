@@ -13,7 +13,7 @@
         <item name="listHeaderTextColor">@color/holo_blue_dark</item>
         <item name="listPreferredItemPaddingLeft">?android:attr/listPreferredItemPaddingLeft</item>
         <item name="listPreferredItemPaddingRight">?android:attr/listPreferredItemPaddingRight</item>
-        
+
     </style>
 
     <style name="AppBaseDarkTheme" parent="AndroidDarkTheme">

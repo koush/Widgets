@@ -42,7 +42,7 @@ public class BetterListActivity extends FragmentActivity implements BetterListFr
     }
 
     public BetterListFragment getFragment() {
-        return (BetterListFragment)getSupportFragmentManager().findFragmentByTag("betterlist");
+        return (BetterListFragment)getSupportFragmentManager().findFragmentByTag("content");
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class BetterListActivity extends FragmentActivity implements BetterListFr
                 BetterListFragment fragment = (BetterListFragment)clazz.getConstructors()[0].newInstance();
                 fragment.setListener(this);
                 fragment.setArguments(getIntent().getExtras());
-                getSupportFragmentManager().beginTransaction().replace(getListContainerId(), fragment, "betterlist").commit();
+                getSupportFragmentManager().beginTransaction().replace(getListContainerId(), fragment, "content").commit();
             }
             catch (Exception e) {
                 e.printStackTrace();

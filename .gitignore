@@ -2,3 +2,5 @@ bin
 obj
 local.properties
 gen
+build
+libs
