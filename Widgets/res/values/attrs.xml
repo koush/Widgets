@@ -9,6 +9,6 @@
     <attr name="listItemSelectableLargeBackground" format="reference|color" />
     <attr name="listItemSelectableLargeIndicatorStyle" format="reference" />
     <attr name="iconSize" format="dimension" />
-    <attr name="listPreferredItemPaddingLeft" format="dimension" />
-    <attr name="listPreferredItemPaddingRight" format="dimension" />
+    <attr name="listPreferredItemPaddingLeft_" format="dimension" />
+    <attr name="listPreferredItemPaddingRight_" format="dimension" />
 </resources>

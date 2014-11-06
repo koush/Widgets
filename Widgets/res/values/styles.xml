@@ -15,8 +15,8 @@
         -->
         <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
         <item name="listHeaderTextColor">@color/holo_blue_dark</item>
-        <item name="listPreferredItemPaddingLeft">6dp</item>
-        <item name="listPreferredItemPaddingRight">6dp</item>
+        <item name="listPreferredItemPaddingLeft_">6dp</item>
+        <item name="listPreferredItemPaddingRight_">6dp</item>
     </style>
 
     <!-- Application theme. -->
@@ -39,8 +39,8 @@
     <style name="AppBaseDarkTheme" parent="AndroidDarkTheme">
         <item name="listContentHeader">?android:attr/listSeparatorTextViewStyle</item>
         <item name="listHeaderTextColor">@null</item>
-        <item name="listPreferredItemPaddingLeft">6dp</item>
-        <item name="listPreferredItemPaddingRight">6dp</item>
+        <item name="listPreferredItemPaddingLeft_">6dp</item>
+        <item name="listPreferredItemPaddingRight_">6dp</item>
     </style>
 
     <!-- Application theme. -->
@@ -63,13 +63,13 @@
     </style>
     
     <style name="AppActivityTheme" parent="AppActivityBaseTheme">
-        <item name="listPreferredItemPaddingLeft">@dimen/activity_horizontal_margin</item>
-        <item name="listPreferredItemPaddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="listPreferredItemPaddingLeft_">@dimen/activity_horizontal_margin</item>
+        <item name="listPreferredItemPaddingRight_">@dimen/activity_horizontal_margin</item>
     </style>
     
     <style name="AppDarkActivityTheme" parent="AppDarkActivityBaseTheme">
-        <item name="listPreferredItemPaddingLeft">@dimen/activity_horizontal_margin</item>
-        <item name="listPreferredItemPaddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="listPreferredItemPaddingLeft_">@dimen/activity_horizontal_margin</item>
+        <item name="listPreferredItemPaddingRight_">@dimen/activity_horizontal_margin</item>
     </style>
     
     <style name="ListItemTitle" >

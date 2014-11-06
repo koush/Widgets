@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:paddingRight="?attr/listPreferredItemPaddingRight"
-    android:paddingLeft="?attr/listPreferredItemPaddingLeft"
+    android:paddingRight="?attr/listPreferredItemPaddingRight_"
+    android:paddingLeft="?attr/listPreferredItemPaddingLeft_"
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
     android:layout_width="fill_parent"
