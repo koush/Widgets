@@ -89,7 +89,7 @@ public class ListContentFragment extends BetterListFragment {
         int transition = getView() == null ? FragmentTransaction.TRANSIT_NONE : FragmentTransaction.TRANSIT_FRAGMENT_FADE;
         ft.setTransition(transition);
         ft.replace(getContentId(), content, "content");
-        ft.commit();
+        ft.commitAllowingStateLoss();
 
         if (clearChoices)
             getListView().clearChoices();
