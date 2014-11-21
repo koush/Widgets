@@ -18,10 +18,11 @@ package com.koushikdutta.widgets;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 
-public class BetterListActivity extends FragmentActivity implements BetterListFragment.ActivityBaseFragmentListener {
+public class BetterListActivity extends ActionBarActivity implements BetterListFragment.ActivityBaseFragmentListener {
     Class<? extends BetterListFragment> clazz;
     public BetterListActivity(Class<? extends BetterListFragment> clazz) {
         super();
@@ -57,7 +58,7 @@ public class BetterListActivity extends FragmentActivity implements BetterListFr
                 BetterListFragment fragment = (BetterListFragment)clazz.getConstructors()[0].newInstance();
                 fragment.setListener(this);
                 fragment.setArguments(getIntent().getExtras());
-                getSupportFragmentManager().beginTransaction().replace(getListContainerId(), fragment, "content").commit();
+                getSupportFragmentManager().beginTransaction().replace(getListContainerId(), fragment, "content").commitAllowingStateLoss();
             }
             catch (Exception e) {
                 e.printStackTrace();
