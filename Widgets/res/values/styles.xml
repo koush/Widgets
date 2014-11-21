@@ -80,9 +80,9 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="NotificationTitle" parent="@android:style/TextAppearance.Medium">
+    <style name="NotificationTitle" parent="@android:style/TextAppearance.StatusBar.EventContent.Title">
     </style>
 
-    <style name="NotificationLine2">
+    <style name="NotificationLine2" parent="@android:style/TextAppearance.StatusBar.EventContent">>
     </style>
 </resources>

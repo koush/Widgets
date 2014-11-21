@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="NotificationTitle" parent="@android:style/TextAppearance.Material.Notification.Title">
+    </style>
+
+    <style name="NotificationLine2" parent="@android:style/TextAppearance.Material.Notification.Line2">>
+    </style>
+</resources>
