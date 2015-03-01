@@ -54,6 +54,7 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
 
     public void hideSectionHeader(String section) {
         hiddenSections.add(section);
+        notifyDataSetChanged();
     }
 
     public SeparatedListAdapter(Context context) {
@@ -72,6 +73,7 @@ public class SeparatedListAdapter<T extends Adapter> extends BaseAdapter {
 
     public void setHideEmptySections(boolean hideEmptySections) {
         this.hideEmpty = hideEmptySections;
+        notifyDataSetChanged();
     }
 
     protected int getListHeaderResource() {
